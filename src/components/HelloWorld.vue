@@ -1,11 +1,11 @@
 <template>
-  <div class="hello">
+  <div class="hello container">
     <div class="row">
       <div class="col-12 mb-3">
-        <router-link to="/submit" class="btn btn-primary btn-lg">Submit PR</router-link>
+        <router-link to="/submit" class="btn btn-primary btn-lg w-100">Submit PR</router-link>
       </div>
       <div class="col-12 mb-3">
-        <router-link to="/history" class="btn btn-primary btn-lg">History</router-link>
+        <router-link to="/history" class="btn btn-primary btn-lg w-100">History</router-link>
       </div>
       <div class="col-12 mb-3">
         <router-link to="/about" class="btn btn-link btn-lg">About the stamina PR</router-link>
@@ -35,8 +35,5 @@ ul {
 li {
   display: inline-block;
   margin: 0 10px;
-}
-a {
-  color: #42b983;
 }
 </style>
