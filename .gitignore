@@ -22,3 +22,7 @@ pnpm-debug.log*
 *.sln
 *.sw?
 package-lock.json
+/.firebaserc
+/database.rules.json
+/firebase.json
+/.firebase/

@@ -18,22 +18,27 @@ const routes = [
   {
     path: '/submit',
     name: 'submit',
-    component: () => import(/* webpackChunkName: "about" */ '../views/SubmitView.vue')
+    component: () => import(/* webpackChunkName: "submit" */ '../views/SubmitView.vue')
   },
   {
     path: '/history',
     name: 'history',
-    component: () => import(/* webpackChunkName: "about" */ '../views/HistoryView.vue')
+    component: () => import(/* webpackChunkName: "history" */ '../views/HistoryView.vue')
   },
   {
     path: '/ranking',
     name: 'ranking',
-    component: () => import(/* webpackChunkName: "about" */ '../views/RankingView.vue')
+    component: () => import(/* webpackChunkName: "ranking" */ '../views/RankingView.vue')
+  },
+  {
+    path: '/monthly',
+    name: 'monthly',
+    component: () => import(/* webpackChunkName: "monthly" */ '../views/RankingMonth.vue')
   },
   {
     path: '/verify',
     name: 'verify',
-    component: () => import(/* webpackChunkName: "about" */ '../views/VerifyView.vue')
+    component: () => import(/* webpackChunkName: "verify" */ '../views/VerifyView.vue')
   }
 ]
 

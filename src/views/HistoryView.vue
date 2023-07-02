@@ -1,11 +1,17 @@
 <template>
   <div class="about container">
     <PageNav/>
-    <h1>PR History</h1>
+    <h1>PR Ranking</h1>
     <p>Here is a list of all the submissions</p>
+<!--    button all time ranking-->
+    <div class="row">
+      <div class="col-12 mb-3">
+        <router-link to="/ranking" class="btn btn-primary btn-lg w-100">All Time Ranking</router-link>
+      </div>
+    </div>
     <h3>2023</h3>
     <div class="card mb-3">
-      <router-link to="/ranking" class="row g-0">
+      <router-link to="/monthly" class="row g-0">
         <div class="col-md-12">
           <div class="card-body">
             <h5 class="card-title m-0">Juni</h5>
@@ -51,3 +57,9 @@ export default {
   components: {PageNav}
 }
 </script>
+
+<style scoped>
+  a {
+    text-decoration: none !important;
+  }
+</style>

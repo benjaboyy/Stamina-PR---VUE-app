@@ -4,6 +4,9 @@
     <h1>This is an submission page</h1>
     <p>Here is a form to submit your data for your personal record</p>
     <form action="">
+<!--      scan qr code button-->
+      <button class="btn btn-primary w-100 mb-3" type="submit">
+        <font-awesome-icon icon="qrcode" /> Scan QR code</button>
       <div class="form-floating">
         <input type="text" class="form-control" name="player_tag" id="player_tag" placeholder="tag">
         <label for="floatingInput">Player tag</label>
