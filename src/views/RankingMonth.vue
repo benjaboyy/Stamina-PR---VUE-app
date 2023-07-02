@@ -1,6 +1,6 @@
 <template>
+  <PageNav/>
   <div class="about container">
-    <PageNav/>
     <h1>Ranking June 2023</h1>
     <p>Here is a list of all the submissions</p>
     <div class="card">
@@ -8,7 +8,7 @@
         <div class="row">
           <div class="col-4 col-md-2">
             <div class="square shiny-gold">
-              <h5>17</h5>
+              <h5>18</h5>
             </div>
           </div>
           <div class="col-8 col-md-8 text-start d-flex">
@@ -37,7 +37,7 @@
           </div>
           <div class="col-8 col-md-8 text-start d-flex">
             <div class="my-auto">
-              <h5 class="card-title m-0">Behy</h5>
+              <h5 class="card-title m-0">ASS</h5>
               <p class="card-text m-0">Song name</p>
               <p class="card-text m-0">BPM</p>
             </div>
@@ -61,7 +61,7 @@
           </div>
           <div class="col-8 col-md-8 text-start d-flex">
             <div class="my-auto">
-              <h5 class="card-title m-0">Behy</h5>
+              <h5 class="card-title m-0">John</h5>
               <p class="card-text m-0">Song name</p>
               <p class="card-text m-0">BPM</p>
             </div>
@@ -85,7 +85,7 @@
           </div>
           <div class="col-8 col-md-8 text-start d-flex">
             <div class="my-auto">
-              <h5 class="card-title m-0">Behy</h5>
+              <h5 class="card-title m-0">Doe</h5>
               <p class="card-text m-0">Song name</p>
               <p class="card-text m-0">BPM</p>
             </div>
@@ -93,7 +93,7 @@
           <div class="col-12 col-md-2 text-end my-auto">
             <h4 class="m-0 dark-gold">
               <font-awesome-icon icon="star"/>
-              +3
+              +2
             </h4>
           </div>
         </div>

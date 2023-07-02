@@ -1,6 +1,6 @@
 body {
   padding-top: 40px;
-  padding-bottom: 40px;
+  padding-bottom: 70px;
   background-image: url("bg-01.png");
   background-repeat: repeat;
   background-color: #f5f5f5;
@@ -14,4 +14,40 @@ body {
   max-width: 600px;
 }
 
-/*# sourceMappingURL=main.css.map */
+.btn-primary {
+  color: #261e13;
+  background-color: #f15832;
+  border-color: #261e13;
+  border-width: 2px;
+}
+
+.btn-primary:hover {
+  color: #261e13;
+  background-color: #f8b127;
+}
+
+.btn-link {
+  color: #261e13;
+  font-weight: 400;
+  text-decoration: underline;
+}
+
+.bg-primary {
+  background-color: #f15832 !important;
+}
+
+.menu {
+  border-top: #261e13 solid 2px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.text-primary {
+  color: #261e13 !important;
+}
+.text-primary a {
+  color: #f15832 !important;
+}
+
+/*# sourceMappingURL=Main.css.map */

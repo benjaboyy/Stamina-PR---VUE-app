@@ -1,6 +1,6 @@
 <template>
+  <PageNav/>
   <div class="about container">
-    <PageNav/>
     <h1>This is an submission page</h1>
     <p>Here is a form to submit your data for your personal record</p>
     <form action="">

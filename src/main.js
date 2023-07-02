@@ -14,10 +14,15 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 /* import specific icons */
 import { faQrcode } from '@fortawesome/free-solid-svg-icons'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
+import { faRankingStar } from '@fortawesome/free-solid-svg-icons'
+import { faTrophy } from '@fortawesome/free-solid-svg-icons'
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
+import { faTimeline } from "@fortawesome/free-solid-svg-icons";
+import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
 /* add icons to the library */
-library.add(faQrcode, faStar)
-
+library.add(faQrcode, faStar, faRankingStar, faTrophy, faInfoCircle, faTimeline, faPaperPlane, faHeart)
 
 createApp(App)
     .component('font-awesome-icon', FontAwesomeIcon)
