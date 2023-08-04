@@ -1,15 +1,30 @@
 <template>
-  <ul class="nav menu nav-pills nav-fill bg-primary py-2">
-    <li class="nav-item">
-      <router-link to="/" class="btn btn-light w-100">Home</router-link>
-    </li>
-    <li class="nav-item">
-      <router-link to="/submit" class="btn btn-light w-100">Submit PR</router-link>
-    </li>
-    <li class="nav-item">
-      <router-link to="/history" class="btn btn-light w-100">History</router-link>
-    </li>
-  </ul>
+  <div class="px-3 py-2 bg-dark menu text-white">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
+          <li>
+            <router-link to="/" class="nav-link text-white">
+              <font-awesome-icon icon="house" class="bi d-block mx-auto mb-1" />
+              Home
+            </router-link>
+          </li>
+          <li>
+            <router-link to="/submit" class="nav-link text-white">
+              <font-awesome-icon icon="paper-plane" class="bi d-block mx-auto mb-1" />
+              Submit
+            </router-link>
+          </li>
+          <li>
+            <router-link to="/history" class="nav-link text-white">
+              <font-awesome-icon icon="ranking-star" class="bi d-block mx-auto mb-1" />
+              Archive
+            </router-link>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
