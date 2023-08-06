@@ -2,6 +2,21 @@
   <router-view/>
 </template>
 
+<script>
+export default {
+  name: 'App',
+
+  created() {
+    this.dataGetter();
+  },
+  methods: {
+    dataGetter() {
+      this.$store.dispatch('submission/loadSubmissions'); // load submissions
+    }
+  }
+}
+</script>
+
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;

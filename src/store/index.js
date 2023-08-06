@@ -1,14 +1,15 @@
 import { createStore } from 'vuex'
 
-export default createStore({
+import submissionModule from './submission.js'
+import rankingModule from './ranking.js'
+
+const store = createStore({
   state: {
   },
-  getters: {
-  },
-  mutations: {
-  },
-  actions: {
-  },
   modules: {
+    submission: submissionModule,
+    ranking: rankingModule,
   }
-})
+});
+
+export default store

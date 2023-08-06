@@ -41,6 +41,8 @@
       </div>
 <!--      payoff-->
       <p class="col-12 text-primary text-center mt-5">Made with <font-awesome-icon icon="heart" /> by <a href="https://ddrexp.nl">DDR-EXP</a></p>
+<!--      admin login link-->
+      <p class="col-12 text-primary text-center mt-5"><a href="/admin">Admin login</a></p>
     </div>
   </div>
 </template>
