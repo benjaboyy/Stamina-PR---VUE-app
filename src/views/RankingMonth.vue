@@ -134,9 +134,38 @@ export default {
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
 .shiny-gold {
-  background-color: #f9a602;
+  background: linear-gradient(228deg, #f7bb24, #dd8000);
+  background-size: 400% 400%;
+
+  -webkit-animation: AnimationName 3s ease infinite;
+  -moz-animation: AnimationName 3s ease infinite;
+  -o-animation: AnimationName 3s ease infinite;
+  animation: AnimationName 3s ease infinite;
 }
+
+@-webkit-keyframes AnimationName {
+  0%{background-position:0% 90%}
+  50%{background-position:100% 11%}
+  100%{background-position:0% 90%}
+}
+@-moz-keyframes AnimationName {
+  0%{background-position:0% 90%}
+  50%{background-position:100% 11%}
+  100%{background-position:0% 90%}
+}
+@-o-keyframes AnimationName {
+  0%{background-position:0% 90%}
+  50%{background-position:100% 11%}
+  100%{background-position:0% 90%}
+}
+@keyframes AnimationName {
+  0%{background-position:0% 90%}
+  50%{background-position:100% 11%}
+  100%{background-position:0% 90%}
+}
+
 .dark-gold {
   color: #b97b00;
 }
+
 </style>

@@ -21,9 +21,10 @@ import { faTimeline } from "@fortawesome/free-solid-svg-icons";
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { faHouse } from "@fortawesome/free-solid-svg-icons";
+import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
 
 /* add icons to the library */
-library.add(faQrcode, faStar, faRankingStar, faTrophy, faInfoCircle, faTimeline, faPaperPlane, faHeart, faHouse)
+library.add(faQrcode, faStar, faRankingStar, faTrophy, faInfoCircle, faTimeline, faPaperPlane, faHeart, faHouse, faEllipsis)
 
 createApp(App)
     .component('font-awesome-icon', FontAwesomeIcon)

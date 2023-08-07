@@ -7,7 +7,7 @@
       <div class="col-6">
         <router-link to="/ranking" class="btn btn-dark d-flex square w-100">
           <div class="m-auto">
-            <font-awesome-icon icon="ranking-star" />
+            <font-awesome-icon class="fa-lg" icon="ranking-star" />
             <br> Ranking last month
           </div>
         </router-link>
@@ -15,15 +15,15 @@
       <div class="col-6">
         <router-link to="/ranking" class="btn btn-secondary d-flex square w-100">
           <div class="m-auto">
-            <font-awesome-icon icon="ranking-star" />
-            <br> All Time Ranking
+            <font-awesome-icon class="fa-lg" icon="ranking-star" />
+            <br> Seasonal Ranking
           </div>
         </router-link>
       </div>
       <div class="col-6">
         <router-link to="/hallOfFame" class="btn btn-secondary d-flex  py-2 square w-100">
           <div class="m-auto">
-            <font-awesome-icon icon="trophy" />
+            <font-awesome-icon class="fa-lg" icon="trophy" />
             <br> Hall of fame
           </div>
         </router-link>
@@ -31,8 +31,8 @@
       <div class="col-6">
         <router-link to="/history" class="btn btn-secondary d-flex  py-2 square w-100">
           <div class="m-auto">
-            <font-awesome-icon icon="timeline" />
-            <br> History
+            <font-awesome-icon class="fa-lg" icon="timeline" />
+            <br> Archive
           </div>
         </router-link>
       </div>
@@ -42,7 +42,7 @@
 <!--      payoff-->
       <p class="col-12 text-primary text-center mt-5">Made with <font-awesome-icon icon="heart" /> by <a href="https://ddrexp.nl">DDR-EXP</a></p>
 <!--      admin login link-->
-      <p class="col-12 text-primary text-center mt-5"><a href="/admin">Admin login</a></p>
+      <router-link to="/verify" class="col-12 text-primary small text-center mt-1">Admin login</router-link>
     </div>
   </div>
 </template>

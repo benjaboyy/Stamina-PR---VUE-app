@@ -22,6 +22,14 @@ export default {
         },
         pushSubmission(state, submission) {
             state.submissions.push(submission);
+        },
+        removeSubmission(state, submissionId) {
+            const submission = state.submissions.find((submission) => submission.id === submissionId);
+            state.submissions.splice(state.submissions.indexOf(submission), 1);
+        },
+        updateSubmission(state, payload) {
+            const submission = state.submissions.find((submission) => submission.id === payload.id);
+            submission.approved = true;
         }
     },
     actions: {
@@ -62,6 +70,33 @@ export default {
                 throw error;
             }
             context.commit('pushSubmission', payload);
+        },
+        async approveSubmission(context, payload) {
+            const response = await fetch(`${API_BASE_URL}/submissions/${payload}.json`, {
+                method: 'PATCH',
+                body: JSON.stringify({
+                    approved: true,
+                }),
+            });
+            const responseData = await response.json();
+            if (!response.ok) {
+                const error = new Error(responseData.message || 'Failed to approve.');
+                throw error;
+            }
+            context.commit('updateSubmission', {
+                id: payload,
+            });
+        },
+        async deleteSubmission(context, payload) {
+            const response = await fetch(`${API_BASE_URL}/submissions/${payload}.json`, {
+                method: 'DELETE',
+            });
+            const responseData = await response.json();
+            if (!response.ok) {
+                const error = new Error(responseData.message || 'Failed to delete.');
+                throw error;
+            }
+            context.commit('removeSubmission', payload);
         }
     },
     getters: {

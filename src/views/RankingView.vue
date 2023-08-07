@@ -1,8 +1,9 @@
 <template>
   <PageNav/>
   <div class="about container">
-    <h1>All time points ranking</h1>
-    <p>Here is a list of all the submissions on points</p>
+    <h1>Points ranking</h1>
+    <h3>Season 1</h3>
+    <p class="text-secondary">Here is a list of all the players on points earned this season</p>
     <div class="card">
       <div class="card-body">
         <div class="row">
