@@ -12,7 +12,7 @@
                 <img :src="submission.imageUrl" class="img-fluid rounded" alt="...">
               </div>
               <div class="col-md-6 d-flex text-md-start">
-                <div class="my-auto">
+                <div class="m-auto ms-md-0">
                   <h5 class="card-title my-1">Player: {{ submission.userName }}</h5>
                   <p class="card-text my-1">Song: {{ submission.songName }}</p>
                   <p class="card-text my-1">BPM: {{ submission.bpm }}</p>

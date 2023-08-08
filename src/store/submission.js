@@ -6,6 +6,8 @@
 // difficulty: string
 // imageUrl: string
 // approved: boolean
+// month: number
+// year: number
 
 const API_BASE_URL = 'https://stamina-pr-default-rtdb.europe-west1.firebasedatabase.app';
 
@@ -97,8 +99,9 @@ export default {
             if (!response.ok) {
                 const error = new Error(responseData.message || 'Failed to delete.');
                 throw error;
+            } else {
+                context.$store.dispatch('loadSubmissions');
             }
-            context.commit('removeSubmission', payload);
         }
     },
     getters: {

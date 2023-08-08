@@ -5,7 +5,7 @@
         <router-link to="/submit" class="btn btn-primary py-2 btn-lg w-100"><font-awesome-icon icon="paper-plane" /> Submit PR</router-link>
       </div>
       <div class="col-6">
-        <router-link to="/ranking" class="btn btn-dark d-flex square w-100">
+        <router-link to="/monthly" class="btn btn-dark d-flex square w-100">
           <div class="m-auto">
             <font-awesome-icon class="fa-lg" icon="ranking-star" />
             <br> Ranking last month
