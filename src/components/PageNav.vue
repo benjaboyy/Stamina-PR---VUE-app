@@ -1,5 +1,5 @@
 <template>
-  <div class="menu z-2">
+  <div class="menu">
     <transition name="fade">
       <div v-if="showMore" class="px-3 py-2 transitionMenu text-white">
         <div class="container">
