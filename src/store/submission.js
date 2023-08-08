@@ -51,6 +51,8 @@ export default {
                         difficulty: data[key].difficulty,
                         imageUrl: data[key].imageUrl,
                         approved: data[key].approved,
+                        month: data[key].month,
+                        year: data[key].year
                     });
                 }
                 context.commit('setSubmissions', submissions);

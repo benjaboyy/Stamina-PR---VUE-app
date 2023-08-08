@@ -1,7 +1,7 @@
 <template>
   <PageNav/>
-  <div class="about container">
-    <h1>This is an submission page</h1>
+  <div class="container">
+    <h1>Submit your PR</h1>
     <p>Here is a form to submit your data for your personal record</p>
 <!--    alert after sending-->
     <div v-if="submitted" class="alert alert-success" role="alert">
@@ -14,7 +14,7 @@
     <form v-if="!submitted" @submit.prevent="submit">
 <!--      scan qr code button-->
       <button class="btn btn-secondary py-3 w-100 mb-3" type="submit">
-        <font-awesome-icon icon="qrcode" /> Scan QR code</button>
+        <font-awesome-icon icon="ranking-star" /> August submission</button>
       <div class="form-floating">
         <input v-model="player_tag" type="text" class="form-control" name="player_tag" id="player_tag" placeholder="tag">
         <label for="floatingInput">Player tag</label>
@@ -56,14 +56,16 @@ export default {
   },
   methods: {
     submit() {
-      console.log(this.player_tag, this.song_name, this.bpm, this.imageUrl);
+      let currentDate = new Date();
       this.$store.dispatch('submission/submitSubmission', {
         player_tag: this.player_tag,
         song_name: this.song_name,
         bpm: this.bpm,
         imageUrl: this.imageUrl,
         difficulty: this.difficulty,
-        approved: false
+        approved: false,
+        month: currentDate.getMonth(),
+        year: currentDate.getFullYear()
       })
       this.resetData();
     },

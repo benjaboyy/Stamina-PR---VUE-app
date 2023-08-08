@@ -1,38 +1,38 @@
 <template>
-  <div class="menu">
+  <div class="menu z-2">
     <transition name="fade">
-      <div v-if="showMore" class="px-3 z-2 py-2 transitionMenu text-white">
+      <div v-if="showMore" class="px-3 py-2 transitionMenu text-white">
         <div class="container">
-          <div class="row g-3">
-            <div class="col-6">
-              <router-link to="/ranking" class="btn btn-primary d-flex square w-100">
+          <div class="row g-2">
+            <div class="col-12">
+              <router-link to="/monthly" class="btn btn-primary d-flex w-100">
                 <div class="m-auto">
                   <font-awesome-icon class="fa-lg" icon="ranking-star" />
-                  <br> Ranking last month
+                  Ranking last month
                 </div>
               </router-link>
             </div>
-            <div class="col-6">
-              <router-link to="/ranking" class="btn btn-primary d-flex square w-100">
+            <div class="col-12">
+              <router-link to="/ranking" class="btn btn-primary d-flex w-100">
                 <div class="m-auto">
                   <font-awesome-icon class="fa-lg" icon="ranking-star" />
-                  <br> Seasonal Ranking
+                  Seasonal Ranking
                 </div>
               </router-link>
             </div>
-            <div class="col-6">
-              <router-link to="/hallOfFame" class="btn btn-primary d-flex  py-2 square w-100">
+            <div class="col-12">
+              <router-link to="/hallOfFame" class="btn btn-primary d-flex w-100">
                 <div class="m-auto">
                   <font-awesome-icon class="fa-lg" icon="trophy" />
-                  <br> Hall of fame
+                  Hall of fame
                 </div>
               </router-link>
             </div>
-            <div class="col-6">
-              <router-link to="/history" class="btn btn-primary d-flex  py-2 square w-100">
+            <div class="col-12">
+              <router-link to="/history" class="btn btn-primary d-flex w-100">
                 <div class="m-auto">
                   <font-awesome-icon class="fa-lg" icon="timeline" />
-                  <br> Archive
+                  Archive
                 </div>
               </router-link>
             </div>
@@ -40,7 +40,7 @@
         </div>
       </div>
     </transition>
-    <div class="px-3 z-2 py-2 bg-dark text-white">
+    <div class="px-3 py-2 bg-dark text-white">
       <div class="container">
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
           <ul class="nav w-100 col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
@@ -106,6 +106,10 @@ li {
   border-color: #6c757d;
   color: #cccccc;
 }
+.z-2 {
+  z-index: 999;
+}
+
 li {
   width: 25%;
 }

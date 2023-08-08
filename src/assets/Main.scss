@@ -6,7 +6,7 @@ $dark: #212529;
 
 body {
   padding-top: 40px;
-  padding-bottom: 70px;
+  padding-bottom: 110px;
   background-image: url("bg-01.png");
   background-repeat: repeat;
   background-color: $light;
@@ -23,7 +23,7 @@ body {
 }
 
 .container {
-    max-width: 600px;
+  max-width: 600px;
 }
 
 .btn-primary {
@@ -51,6 +51,7 @@ body {
 .menu {
   position: fixed;
   bottom: 0;
+  z-index: 999;
   width: 100%;
 }
 
