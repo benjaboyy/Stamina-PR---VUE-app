@@ -1,5 +1,4 @@
 <template>
-  <PageNav/>
   <div class="about container">
     <h1>Ranking June 2023</h1>
     <p>Here is a list of all the submissions</p>
@@ -55,10 +54,9 @@
 </template>
 
 <script>
-import PageNav from "@/components/PageNav";
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 export default {
-  components: {FontAwesomeIcon, PageNav}
+  components: {FontAwesomeIcon}
 }
 </script>
 

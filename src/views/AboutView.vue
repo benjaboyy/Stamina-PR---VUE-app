@@ -1,5 +1,4 @@
 <template>
-  <PageNav/>
   <div class="about">
     <PageNav/>
     <img class="logo mb-3" alt="Vue logo" src="../assets/logo.png">
@@ -54,10 +53,7 @@
 </template>
 
 <script>
-import PageNav from "@/components/PageNav";
-export default {
-  components: {PageNav}
-}
+
 </script>
 
 <style scoped>

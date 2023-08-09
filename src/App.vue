@@ -1,11 +1,18 @@
 <template>
+  <PageNav v-if="isOnHome"/>
   <router-view/>
 </template>
 
 <script>
+import PageNav from "@/components/PageNav";
 export default {
+  components: {PageNav},
   name: 'App',
-
+  computed: {
+    isOnHome() {
+      return this.$route.name === 'home'
+    }
+  },
   created() {
     this.dataGetter();
   },

@@ -1,5 +1,4 @@
 <template>
-  <PageNav/>
   <div class="about container">
     <h1>Points ranking</h1>
     <h3>Season 1</h3>
@@ -40,10 +39,7 @@
 </template>
 
 <script>
-import PageNav from "@/components/PageNav";
-export default {
-  components: {PageNav}
-}
+
 </script>
 
 <style scoped>

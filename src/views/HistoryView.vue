@@ -1,5 +1,4 @@
 <template>
-  <PageNav/>
   <div class="about container">
     <h1>PR Ranking</h1>
     <p>Here is a list of all the submissions</p>
@@ -46,10 +45,7 @@
 </template>
 
 <script>
-import PageNav from "@/components/PageNav";
-export default {
-  components: {PageNav}
-}
+
 </script>
 
 <style scoped>

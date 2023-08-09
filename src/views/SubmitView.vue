@@ -1,5 +1,4 @@
 <template>
-  <PageNav/>
   <div class="container">
     <h1>Submit your PR</h1>
     <p>Here is a form to submit your data for your personal record</p>
@@ -40,9 +39,7 @@
   </div>
 </template>
 <script>
-import PageNav from "@/components/PageNav";
 export default {
-  components: {PageNav},
   name: "SubmitView",
   data() {
     return {
