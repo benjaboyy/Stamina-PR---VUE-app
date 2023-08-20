@@ -16,8 +16,8 @@
                   <p class="card-text my-1">Song: {{ submission.songName }}</p>
                   <p class="card-text my-1">BPM: {{ submission.bpm }}</p>
                   <p class="card-text my-1">Difficulty: {{ submission.difficulty }}</p>
-                  <button v-if="submission.approved === false" class="btn btn-success me-2" @click="verifySubmission(submission.id)">Verify</button>
-                  <button class="btn btn-danger" @click="deleteSubmission(submission.id)">Remove</button>
+                  <button v-if="submission.approved === false" class="btn btn-success me-2" @click="verifySubmission(submission)">Verify</button>
+                  <button class="btn btn-danger" @click="deleteSubmission(submission)">Remove</button>
                 </div>
               </div>
             </div>
@@ -37,11 +37,12 @@ export default {
     }
   },
   methods: {
-    verifySubmission(id) {
-      this.$store.dispatch('submission/approveSubmission', id)
+    verifySubmission(submission) {
+      this.$store.dispatch('submission/approveSubmission', submission)
+      this.$store.dispatch('ranking/addSubmission', submission)
     },
-    deleteSubmission(id) {
-      this.$store.dispatch('submission/deleteSubmission', id)
+    deleteSubmission(submission) {
+      this.$store.dispatch('submission/deleteSubmission', submission)
     }
   },
   computed: {

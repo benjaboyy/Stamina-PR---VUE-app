@@ -76,7 +76,7 @@ export default {
             context.commit('pushSubmission', payload);
         },
         async approveSubmission(context, payload) {
-            const response = await fetch(`${API_BASE_URL}/submissions/${payload}.json`, {
+            const response = await fetch(`${API_BASE_URL}/submissions/${payload.id}.json`, {
                 method: 'PATCH',
                 body: JSON.stringify({
                     approved: true,
@@ -88,11 +88,11 @@ export default {
                 throw error;
             }
             context.commit('updateSubmission', {
-                id: payload,
+                id: payload.id,
             });
         },
         async deleteSubmission(context, payload) {
-            const response = await fetch(`${API_BASE_URL}/submissions/${payload}.json`, {
+            const response = await fetch(`${API_BASE_URL}/submissions/${payload.id}.json`, {
                 method: 'DELETE',
             });
             const responseData = await response.json();
@@ -100,7 +100,7 @@ export default {
                 const error = new Error(responseData.message || 'Failed to delete.');
                 throw error;
             } else {
-                context.$store.dispatch('loadSubmissions');
+                context.commit('removeSubmission', payload.id);
             }
         }
     },

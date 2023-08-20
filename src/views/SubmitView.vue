@@ -15,11 +15,11 @@
       <button class="btn btn-secondary py-3 w-100 mb-3" type="submit">
         <font-awesome-icon icon="ranking-star" /> August submission</button>
       <div class="form-floating">
-        <input v-model="player_tag" type="text" class="form-control" name="player_tag" id="player_tag" placeholder="tag">
+        <input v-model="userName" type="text" class="form-control" name="userName" id="userName" placeholder="tag">
         <label for="floatingInput">Player tag</label>
       </div>
       <div class="form-floating">
-        <input v-model="song_name" type="text" class="form-control" name="song_name" id="song_name" placeholder="song">
+        <input v-model="songName" type="text" class="form-control" name="songName" id="songName" placeholder="song">
         <label for="floatingInput">Song name</label>
       </div>
       <div class="form-floating">
@@ -43,8 +43,8 @@ export default {
   name: "SubmitView",
   data() {
     return {
-      player_tag: '',
-      song_name: '',
+      userName: '',
+      songName: '',
       bpm: '',
       imageUrl: '',
       difficulty: '',
@@ -55,8 +55,8 @@ export default {
     submit() {
       let currentDate = new Date();
       this.$store.dispatch('submission/submitSubmission', {
-        player_tag: this.player_tag,
-        song_name: this.song_name,
+        userName: this.userName,
+        songName: this.songName,
         bpm: this.bpm,
         imageUrl: this.imageUrl,
         difficulty: this.difficulty,
@@ -67,8 +67,8 @@ export default {
       this.resetData();
     },
     resetData() {
-      this.player_tag = '';
-      this.song_name = '';
+      this.userName = '';
+      this.songName = '';
       this.bpm = '';
       this.imageUrl = '';
       this.difficulty = '';

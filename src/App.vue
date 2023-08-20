@@ -19,6 +19,8 @@ export default {
   methods: {
     dataGetter() {
       this.$store.dispatch('submission/loadSubmissions'); // load submissions
+      // load season for 2023
+      this.$store.dispatch('ranking/loadSeason', {year: 2023});
     }
   }
 }
