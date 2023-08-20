@@ -7,14 +7,14 @@
         <div class="row">
           <div class="col-3 col-md-2">
             <div class="square shiny-gold">
-              <h5>18</h5>
+              <h5>{{ submission.difficulty }}</h5>
             </div>
           </div>
           <div class="col-6 col-md-8 text-start d-flex">
             <div class="my-auto">
-              <h5 class="card-title m-0">{ submission }</h5>
-              <p class="card-text m-0">Song name</p>
-              <p class="card-text m-0">BPM</p>
+              <h5 class="card-title m-0">{{ submission.userName }}</h5>
+              <p class="card-text m-0">{{ submission.songName }}</p>
+              <p class="card-text m-0">{{ submission.bpm }}</p>
             </div>
           </div>
           <div class="col-3 col-md-2 text-end my-auto">
