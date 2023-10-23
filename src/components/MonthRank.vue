@@ -2,8 +2,16 @@
   <div class="about container">
     <h1>Ranking {{ monthName }} {{ year }}</h1>
     <p>Here is a list of all the submissions</p>
-    <div class="card">
-      <div class="card-body" v-for="submission in submissions.submissions" :key="submission.userName">
+    <router-link :to="`/monthly/${previousYear}/${previousMonth}`" class="btn btn-primary mb-3" @click="reloadPage">
+      <font-awesome-icon icon="chevron-left"/>
+      Previous Month
+    </router-link>
+    <router-link v-if="!isCurrentMonth" :to="`/monthly/${nextYear}/${nextMonth}`" class="btn ms-2 btn-primary mb-3" @click="reloadPage">
+      Next Month
+    <font-awesome-icon icon="chevron-right"/>
+    </router-link>
+    <div class="card mb-2" v-for="(submission, index) in sortedSubmissions" :key="submission.userName">
+      <div class="card-body">
         <div class="row">
           <div class="col-3 col-md-2">
             <div class="square shiny-gold">
@@ -20,10 +28,16 @@
           <div class="col-3 col-md-2 text-end my-auto">
             <h4 class="m-0 dark-gold">
               <font-awesome-icon icon="star"/>
-              +6
+              +{{ stars(index) }}
             </h4>
           </div>
         </div>
+      </div>
+    </div>
+
+    <div class="card mb-2" v-if="sortedSubmissions.length === 0">
+      <div class="card-body text-center">
+         <h5 class="mb-0">No submissions yet</h5>
       </div>
     </div>
   </div>
@@ -35,24 +49,109 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 export default {
   name: "MonthlyRanking",
   components: { FontAwesomeIcon },
+  data() {
+    return {
+      submissions: [],
+      sortedSubmissions: [],
+      months: [
+        "January", "February", "March", "April",
+        "May", "June", "July", "August",
+        "September", "October", "November", "December"
+      ]
+    };
+  },
   props: {
     year: Number, // Pass the year as a prop
     month: Number, // Pass the month as a prop
   },
-  computed: {
-    submissions() {
-      // Get submissions for the specified month and year
-      return this.$store.getters["ranking/rankingOfMonth"](this.month) || [];
-    },
-    monthName() {
-      const months = [
-        "January", "February", "March", "April",
-        "May", "June", "July", "August",
-        "September", "October", "November", "December"
-      ];
-      return months[this.month - 1] || "";
-    },
+  async created() {
+    await this.$store.dispatch("ranking/loadAllSeasonRankings");
+    await this.getSubmissions();
+    await this.sortSubmissions(); // Call the sortSubmissions method here
   },
+  methods:{
+    reloadPage() {
+      // reload on previous moth URL
+      setTimeout(() => {
+        location.reload();
+      }, 100);
+    },
+    stars(index) {
+      // Calculate the star count based on the index
+      switch (index) {
+        case 0:
+          return 4;
+        case 1:
+          return 3;
+        case 2:
+          return 2;
+        default:
+          return 1;
+      }
+    },
+    getSubmissions() {
+      // Get submissions for the specified month and year
+      this.submissions = this.$store.getters["ranking/rankingOfMonth"](this.month, this.year);
+    },
+    sortSubmissions() {
+      if (this.submissions && typeof this.submissions === 'object') {
+        const submissionArray = Object.values(this.submissions.submissions);
+
+        this.sortedSubmissions = submissionArray.sort((a, b) => {
+          return b.difficulty - a.difficulty;
+        });
+      } else {
+        // Handle the case where this.submissions is not a valid object
+        this.sortedSubmissions = [];
+      }
+    }
+
+  },
+  computed: {
+    monthName() {
+      return this.months[this.month - 1] || "";
+    },
+    previousMonthName() {
+      return this.months[this.previousMonth - 1] || "";
+    },
+    nextMonthName() {
+      return this.months[this.nextMonth - 1] || "";
+    },
+    isCurrentMonth() {
+      const now = new Date();
+      return now.getFullYear() === parseInt(this.year) && now.getMonth() + 1 === parseInt(this.month, 10);
+    },
+    previousMonth() {
+      if (this.month === 1) {
+        return 12;
+      } else {
+        return this.month - 1;
+      }
+    },
+    previousYear() {
+      if (this.month === 1) {
+        return this.year - 1;
+      } else {
+        return this.year;
+      }
+    },
+    nextMonth() {
+      const currentMonth = parseInt(this.month, 10);
+      if (currentMonth === 12) {
+        return 1; // If the current month is December, go to January (1) of the same year.
+      } else {
+        return currentMonth + 1; // Otherwise, increment the current month by 1.
+      }
+    },
+    nextYear() {
+      const currentMonth = parseInt(this.year, 10);
+      if (currentMonth === 12) {
+        return this.year + 1; // If the current month is December, increment the year by 1.
+      } else {
+        return this.year; // Otherwise, stay in the same year.
+      }
+    }
+  }
 };
 </script>
 

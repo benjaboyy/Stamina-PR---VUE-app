@@ -1,6 +1,6 @@
 <template>
   <div>
-    <MonthRank :year="2023" :month="7" />
+    <MonthRank :year="year" :month="month" />
   </div>
 </template>
 
@@ -8,6 +8,14 @@
 import MonthRank from "@/components/MonthRank";
 export default {
   name: "MonthlyView",
-  components: {MonthRank}
+  components: {MonthRank},
+  data() {
+    return {
+      year: this.$route.params.year,
+      month: this.$route.params.month
+    }
+  },
+  // example of url
+  // http://localhost:8080/monthly/2023/7
 }
 </script>

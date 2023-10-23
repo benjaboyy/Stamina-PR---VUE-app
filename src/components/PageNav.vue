@@ -3,12 +3,12 @@
     <transition name="fade">
       <div v-if="showMore" class="px-3 py-2 transitionMenu text-white">
         <div class="container">
-          <div class="row g-2">
+          <div class="row subMenu g-2">
             <div class="col-12">
-              <router-link to="/monthly" class="btn btn-primary d-flex w-100">
+              <router-link :to="'/monthly/' + currentYear + '/' + currentMonth" class="btn btn-primary d-flex w-100">
                 <div class="m-auto">
                   <font-awesome-icon class="fa-lg" icon="ranking-star" />
-                  Ranking last month
+                  Ranking this month
                 </div>
               </router-link>
             </div>
@@ -74,12 +74,22 @@ export default {
   name: 'PageNav',
   data () {
     return {
-      showMore: false
+      showMore: false,
     }
   },
   methods: {
     toggleShowMore () {
       this.showMore = !this.showMore
+    },
+  },
+  computed: {
+    currentYear () {
+      const date = new Date()
+      return date.getFullYear()
+    },
+    currentMonth () {
+      const date = new Date()
+      return date.getMonth() + 1
     }
   },
   props: {
@@ -122,6 +132,17 @@ li {
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
+}
+
+.subMenu {
+  width: 50%;
+  margin-left: auto;
+}
+
+@media (max-width: 768px) {
+  .subMenu {
+    width: 100%;
+  }
 }
 
 </style>

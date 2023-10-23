@@ -1,5 +1,5 @@
 <template>
-  <PageNav v-if="isOnHome"/>
+  <PageNav/>
   <router-view/>
 </template>
 

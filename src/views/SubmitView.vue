@@ -9,7 +9,7 @@
       <hr>
       <p class="mb-0">You can check your submission in the history page or overal ranking after the admin approved it</p>
     </div>
-    <button v-if="submitted" class="btn btn-primary mb-5" @click="submitted = !submitted">Submit another PR</button>
+    <router-link to="/" v-if="submitted" class="btn btn-primary mb-5" @click="submitted = !submitted">Back to home</router-link>
     <form v-if="!submitted" @submit.prevent="submit">
 <!--      scan qr code button-->
       <button class="btn btn-secondary py-3 w-100 mb-3" type="submit">
@@ -61,7 +61,7 @@ export default {
         imageUrl: this.imageUrl,
         difficulty: this.difficulty,
         approved: false,
-        month: currentDate.getMonth(),
+        month: currentDate.getMonth()+1,
         year: currentDate.getFullYear()
       })
       this.resetData();

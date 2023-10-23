@@ -39,7 +39,7 @@ export default {
   methods: {
     verifySubmission(submission) {
       this.$store.dispatch('submission/approveSubmission', submission)
-      this.$store.dispatch('ranking/addSubmission', submission)
+      this.$store.dispatch('ranking/addToRanking', submission)
     },
     deleteSubmission(submission) {
       this.$store.dispatch('submission/deleteSubmission', submission)
