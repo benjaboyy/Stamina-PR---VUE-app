@@ -2,28 +2,20 @@
   <div class="about container">
     <h1>PR History</h1>
     <p>Here is a list of all ranking on date</p>
-    <div v-for="season in seasons" :key="season.year">
-      <h3>{{ season.year }}</h3>
-      <div v-for="month in season.rankings" :key="month.rankings" class="card mb-3">
-        <router-link to="/monthly/{{ month.rankings }}" class="row g-0">
-          <div class="col-md-12">
-            <div class="card-body">
-              <h5 class="card-title m-0">{{ month.rankings }}</h5>
+    <div v-for="season in seasons" :key="season">
+      <h3>{{ season }}</h3>
+      <div v-for="month, index in months" :key="month">
+        <div v-if="isNotFutureMonth(season, index)" class="card mb-3">
+          <router-link v-if="isNotFutureMonth(season, index)" :to="`/monthly/${season}/${index+1}`" class="row g-0">
+            <div class="col-md-12">
+              <div class="card-body"
+                   :class="{'bg-primary': isNotFutureMonth(season, index) === 2}">
+                <h5 class="card-title m-0">{{ month }}</h5>
+              </div>
             </div>
-          </div>
-        </router-link>
-      </div>
-    </div>
-
-    <h3>2022</h3>
-    <div class="card mb-3">
-      <router-link to="/monthly" class="row g-0">
-        <div class="col-md-12">
-          <div class="card-body">
-            <h5 class="card-title m-0">December</h5>
-          </div>
+          </router-link>
         </div>
-      </router-link>
+      </div>
     </div>
   </div>
 </template>
@@ -32,15 +24,37 @@
 
 export default {
   name: 'HistoryView',
-  async created() {
-    await this.$store.dispatch("ranking/loadAllSeasonRankings");
+  data() {
+    return {
+      months: [
+        "January", "February", "March", "April",
+        "May", "June", "July", "August",
+        "September", "October", "November", "December"
+      ],
+      seasons: [
+        "2023", "2022"
+      ]
+    }
   },
-  computed: {
-    seasons() {
-      return this.$store.getters["ranking/getRanking"];
-    },
-  },
-
+  methods: {
+    isNotFutureMonth (year, month) {
+      const date = new Date()
+      if (year > date.getFullYear()) {
+        return false
+      }
+      if (year == date.getFullYear()) {
+        if (month > date.getMonth()) {
+          return false
+        } else if (month == date.getMonth()) {
+          return 2
+        } else {
+          return true
+        }
+      } else {
+        return true
+      }
+    }
+  }
 };
 
 </script>
