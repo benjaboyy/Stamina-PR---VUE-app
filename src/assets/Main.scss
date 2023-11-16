@@ -12,6 +12,10 @@ body {
   background-color: $light;
 }
 
+.card {
+  border-radius: 8px;
+}
+
 .card-body {
   background-color: $dark;
   color: white;
@@ -60,4 +64,8 @@ body {
   a {
     color: $primary !important;
   }
+}
+
+.text-primary-dark {
+  color: $primary-dark;
 }

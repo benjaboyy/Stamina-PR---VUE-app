@@ -5,9 +5,10 @@
     <h1>About Stamina PR</h1>
     <p>Stamina PR is a website that allows you to submit your scores for the Dutch Stamina PR rankings. <br>
       Every month, the scores will be checked and the ranking will be updated. <br>
-      You are allowed to update your score as many times as you want, but only the highest score will be used for the ranking.</p>
-    <h3>Mothly submissions</h3>
-    <p>Every month, a ranking will be made based on the points you have submitted. you get points based on your placement in the ranking.</p>
+      You are allowed to update your score as many times as you want (keep reasonable), but only the highest score will be used for the ranking for the current month.</p>
+    <h3>Monthly submissions</h3>
+    <p>Every month, a ranking will be made based on the scores you have submitted. you get points based on your placement in the ranking.<br>
+      You can not choose the month so submit within the month you have played the song</p>
     <table class="table-borderless table-striped table text-start mx-auto">
       <thead>
       <tr>
@@ -43,12 +44,15 @@
       </tbody>
     </table>
     <h3>All time ranking</h3>
-    <p>There is also an all time ranking. This ranking is based on the total amount of points you have submitted.</p>
+    <p>This ranking is based on the total amount of points you have for submitting in this season.</p>
     <h3>Hall of fame</h3>
-    <p>Here you can see the highest scores ever submitted for every participant.</p>
+    <p>Here you can see the highest scores submitted for every participant in this season</p>
     <h3>How to submit</h3>
     <p>On the submit page, you can submit your scores. You can do this by scanning a QR code, or by filling in the form. <br>
-      If you are not using the QR code, you will need to make a screenshot of your score and upload it.</p>
+      If you are not using the QR code, you will need to make a screenshot of your score and upload it. <br>
+    Scores need to be confirmed manually before they are added to the ranking</p>
+    <h3>Archive</h3>
+    <p>All confirmed submissions can be viewed here also from previous seasons</p>
   </div>
 </template>
 

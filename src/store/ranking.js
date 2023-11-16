@@ -2,7 +2,6 @@
 //
 // "rankings": {
 // "2023": {
-
 //     "rankings": {
 //         "7": {
 //             "submissions": {
@@ -91,6 +90,9 @@ export default {
         },
         getRanking(state) {
             return state.seasons;
+        },
+        getHighestRankingScores() {
+            // TODO: only get highest ranking entry for every player this season
         }
     }
 }

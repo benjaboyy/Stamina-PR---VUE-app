@@ -1,7 +1,8 @@
 <template>
   <div class="container">
     <h1>Submit your PR</h1>
-    <p>Here is a form to submit your data for your personal record</p>
+    <p>Submit your score for this moths ranking
+      <router-link to="/about" class="btn btn-link "><font-awesome-icon icon="circle-info" /> How it works</router-link></p>
 <!--    alert after sending-->
     <div v-if="submitted" class="alert alert-success" role="alert">
       <h4 class="alert-heading">Well done!</h4>
@@ -10,10 +11,10 @@
       <p class="mb-0">You can check your submission in the history page or overal ranking after the admin approved it</p>
     </div>
     <router-link to="/" v-if="submitted" class="btn btn-primary mb-5" @click="submitted = !submitted">Back to home</router-link>
+    <!--      scan qr code button-->
+    <button class="btn btn-secondary py-3 w-100 mb-3">
+      <font-awesome-icon icon="ranking-star" /> August submission</button>
     <form v-if="!submitted" @submit.prevent="submit">
-<!--      scan qr code button-->
-      <button class="btn btn-secondary py-3 w-100 mb-3" type="submit">
-        <font-awesome-icon icon="ranking-star" /> August submission</button>
       <div class="form-floating">
         <input v-model="userName" type="text" class="form-control" name="userName" id="userName" placeholder="tag">
         <label for="floatingInput">Player tag</label>
