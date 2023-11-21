@@ -62,6 +62,7 @@ export default {
         imageUrl: this.imageUrl,
         difficulty: this.difficulty,
         approved: false,
+        date: currentDate.getDate(),
         month: currentDate.getMonth()+1,
         year: currentDate.getFullYear()
       })

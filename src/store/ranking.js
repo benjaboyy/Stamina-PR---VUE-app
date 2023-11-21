@@ -91,8 +91,41 @@ export default {
         getRanking(state) {
             return state.seasons;
         },
-        getHighestRankingScores() {
-            // TODO: only get highest ranking entry for every player this season
+        getHighestRankingScores: (state, getters) => {
+            const currentSeason = getters.currentSeason;
+
+            if (currentSeason && currentSeason.rankings) {
+                const highestScores = {};
+
+                for (const month in currentSeason.rankings) {
+                    const monthData = currentSeason.rankings[month];
+
+                    if (monthData && monthData.submissions) {
+                        const submissions = monthData.submissions;
+
+                        for (const user in submissions) {
+                            const submission = submissions[user];
+                            const currentHighest = highestScores[user];
+
+                            if (!currentHighest || submission.difficulty > currentHighest.difficulty) {
+                                highestScores[user] = {
+                                    difficulty: submission.difficulty,
+                                    songName: submission.songName,
+                                    bpm: submission.bpm,
+                                };
+                            }
+                        }
+                    }
+                }
+
+                return highestScores;
+            } else {
+                console.error("Current season or rankings not available:", currentSeason);
+                return {};
+            }
         }
+
+
+
     }
 }

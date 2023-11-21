@@ -2,6 +2,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+import VueQrcodeReader from "vue-qrcode-reader";
 import "bootstrap/dist/css/bootstrap.min.css"
 import "bootstrap"
 import "./assets/main.css"
@@ -22,12 +23,17 @@ import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { faHouse } from "@fortawesome/free-solid-svg-icons";
 import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
+// import chevons icons
+import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
+import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
+
 
 /* add icons to the library */
-library.add(faQrcode, faStar, faRankingStar, faTrophy, faInfoCircle, faTimeline, faPaperPlane, faHeart, faHouse, faEllipsis)
+library.add(faQrcode, faStar, faRankingStar, faTrophy, faInfoCircle, faTimeline, faPaperPlane, faHeart, faHouse, faEllipsis, faChevronLeft, faChevronRight)
 
 createApp(App)
     .component('font-awesome-icon', FontAwesomeIcon)
     .use(store)
     .use(router)
+    .use(VueQrcodeReader)
     .mount('#app')

@@ -1,21 +1,34 @@
 <template>
   <div class="container">
-    <button class="btn btn-primary btn-lg">Scan QR</button>
+    <button class="btn btn-primary btn-lg" @click="startScanner">Scan QR</button>
     <div class="card mt-3">
-      results
+      <qrcode-stream @decode="onDecode" :preferFrontCamera="true"></qrcode-stream>
+      <div v-if="scannedData">{{ scannedData }}</div>
     </div>
   </div>
 </template>
 
 <script>
-// TODO: make qr reader
+export default {
+  data() {
+    return {
+      scannedData: null,
+    };
+  },
+  methods: {
+
+    startScanner() {
+      this.scannedData = null; // Reset previous scan data
+      this.$refs.qrcodeStream.start(); // Start scanning
+
+    },
+    onDecode(decodedValue) {
+      this.scannedData = decodedValue;
+    },
+  },
+};
 </script>
 
 <style scoped>
-table {
-  width: 100%;
-  max-width: 500px;
-  border: 1px solid #dee2e6;
-}
+/* Add your styling here */
 </style>
-

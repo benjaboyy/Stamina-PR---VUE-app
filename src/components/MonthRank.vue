@@ -4,10 +4,10 @@
     <p>Here is a list of all the submissions</p>
     <router-link :to="`/monthly/${previousYear}/${previousMonth}`" class="btn btn-primary mb-3" @click="reloadPage">
       <font-awesome-icon icon="chevron-left"/>
-      Previous Month
+      {{ previousMonthName }}
     </router-link>
     <router-link v-if="!isCurrentMonth" :to="`/monthly/${nextYear}/${nextMonth}`" class="btn ms-2 btn-primary mb-3" @click="reloadPage">
-      Next Month
+      {{ nextMonthName }}
     <font-awesome-icon icon="chevron-right"/>
     </router-link>
     <div class="card mb-2" v-for="(submission, index) in sortedSubmissions" :key="submission.userName">
@@ -65,7 +65,6 @@ export default {
     month: Number, // Pass the month as a prop
   },
   async created() {
-    await this.$store.dispatch("ranking/loadAllSeasonRankings");
     await this.getSubmissions();
     await this.sortSubmissions(); // Call the sortSubmissions method here
   },

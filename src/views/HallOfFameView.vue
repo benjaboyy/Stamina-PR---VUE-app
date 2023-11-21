@@ -2,39 +2,21 @@
   <div class="about container">
     <h1>Hall of fame</h1>
     <p>Dutch community highest PR list</p>
-    <div class="card">
+    <!-- Loop through sortedSubmissions and create a card for each submission -->
+    <div v-for="(submission, index) in sortedSubmissions" :key="index" class="card">
       <div class="float-end text-primary"><small>12-12-2023</small></div>
       <div class="card-body">
         <div class="row">
           <div class="col-3 col-md-2">
             <div class="square shiny-gold">
-              <h5>17</h5>
+              <h5>{{ submission.difficulty }}</h5>
             </div>
           </div>
           <div class="col-9 col-md-10 text-start d-flex">
             <div class="my-auto">
-              <h5 class="card-title m-0">Behy</h5>
-              <p class="card-text m-0">Song: <strong>Max300</strong></p>
-              <p class="card-text m-0">BPM: <strong>150</strong></p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="float-end text-primary"><small>12-12-2023</small></div>
-      <div class="card-body">
-        <div class="row">
-          <div class="col-3 col-md-2">
-            <div class="square shiny-gold">
-              <h5>16</h5>
-            </div>
-          </div>
-          <div class="col-9 col-md-10 text-start d-flex">
-            <div class="my-auto">
-              <h5 class="card-title m-0">ASS</h5>
-              <p class="card-text m-0">Song name</p>
-              <p class="card-text m-0">BPM</p>
+              <h5 class="card-title m-0">{{ submission.userName }}</h5>
+              <p class="card-text m-0">Song: <strong>{{ submission.songName }}</strong></p>
+              <p class="card-text m-0">BPM: <strong>{{ submission.bpm }}</strong></p>
             </div>
           </div>
         </div>
@@ -49,26 +31,28 @@ export default {
   data() {
     return {
       submissions: [],
-      sortedSubmissions: []
+      sortedSubmissions: [],
+      year: 2023
     };
   },
-  props: {
-    year: Number, // Pass the year as a prop
+  created() {
+    this.loadRankings();
   },
-  async created() {
-    // TODO: move the load submissions to app.vue
-    await this.$store.dispatch("ranking/loadAllSeasonRankings");
-    await this.getSubmissions();
-    await this.sortSubmissions(); // Call the sortSubmissions method here
-  },
-  methods:{
-    getSubmissions() {
-      // Get submissions for the specified year
-      this.submissions = this.$store.getters["ranking/getHighestRankingScores"](this.year);
+  methods: {
+    async loadRankings() {
+      await this.getSubmissions();
+      await this.sortSubmissions();
+    },
+    async getSubmissions() {
+      this.submissions = this.$store.getters['ranking/getHighestRankingScores'];
+      // Further processing or actions related to submissions
     },
     sortSubmissions() {
-      if (this.submissions && typeof this.submissions === 'object') {
-        const submissionArray = Object.values(this.submissions.submissions);
+      if (this.submissions && Object.keys(this.submissions).length > 0) {
+        const submissionArray = Object.entries(this.submissions).map(([userName, submission]) => ({
+          userName,
+          ...submission,
+        }));
 
         this.sortedSubmissions = submissionArray.sort((a, b) => {
           return b.difficulty - a.difficulty;
@@ -77,16 +61,19 @@ export default {
         // Handle the case where this.submissions is not a valid object
         this.sortedSubmissions = [];
       }
-    }
-
+    },
   },
   computed: {
     isCurrentMonth() {
       const now = new Date();
-      return now.getFullYear() === parseInt(this.year) && now.getMonth() + 1 === parseInt(this.month, 10);
-    }
-  }
+      return (
+          now.getFullYear() === parseInt(this.year) &&
+          now.getMonth() + 1 === parseInt(this.month, 10)
+      );
+    },
+  },
 };
+
 </script>
 
 <style scoped>
