@@ -36,15 +36,18 @@ export default {
     };
   },
   created() {
-    this.loadRankings();
+    this.reset();
   },
   methods: {
+    async reset() {
+      await this.loadRankings();
+    },
     async loadRankings() {
       await this.getSubmissions();
       await this.sortSubmissions();
     },
     async getSubmissions() {
-      this.submissions = this.$store.getters['ranking/getHighestRankingScores'];
+      this.submissions = await this.$store.getters['ranking/getHighestRankingScores'];
       // Further processing or actions related to submissions
     },
     sortSubmissions() {
@@ -62,16 +65,7 @@ export default {
         this.sortedSubmissions = [];
       }
     },
-  },
-  computed: {
-    isCurrentMonth() {
-      const now = new Date();
-      return (
-          now.getFullYear() === parseInt(this.year) &&
-          now.getMonth() + 1 === parseInt(this.month, 10)
-      );
-    },
-  },
+  }
 };
 
 </script>

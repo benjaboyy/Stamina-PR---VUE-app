@@ -1,6 +1,6 @@
 <template>
   <PageNav/>
-  <router-view/>
+  <router-view v-if="loaded"/>
 </template>
 
 <script>
@@ -8,6 +8,11 @@ import PageNav from "@/components/PageNav";
 export default {
   components: {PageNav},
   name: 'App',
+  data() {
+    return {
+      loaded: false
+    }
+  },
   computed: {
     isOnHome() {
       return this.$route.name === 'home'
@@ -17,10 +22,12 @@ export default {
     this.dataGetter();
   },
   methods: {
-    dataGetter() {
-      this.$store.dispatch('submission/loadSubmissions'); // load submissions
+    async dataGetter() {
+      this.loaded = false;
+      await this.$store.dispatch('submission/loadSubmissions'); // load submissions
       // load season for 2023
-      this.$store.dispatch("ranking/loadAllSeasonRankings");
+      await this.$store.dispatch("ranking/loadAllSeasonRankings");
+      this.loaded = true;
     }
   }
 }

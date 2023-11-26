@@ -1,45 +1,103 @@
 <template>
   <div class="about container">
     <h1>Points ranking</h1>
-    <h3>Season 1</h3>
+    <h3>Season {{ year }}</h3>
     <p class="text-secondary">Here is a list of all the players on points earned this season</p>
-    <div class="card">
-      <div class="card-body">
-        <div class="row">
-          <div class="col-4 col-md-3">
-            <div class="square shiny-gold">
-              <h5>
-                <font-awesome-icon icon="star"/> 120
-              </h5>
+
+    <div v-if="rankedPlayers.length > 0">
+      <div v-for="(player, index) in rankedPlayers" :key="index" class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-4 col-md-3">
+              <div :class="{ square: true, 'shiny-gold': index === 0 }">
+                <h5>
+                  <font-awesome-icon icon="star"/> {{ player.points }}
+                </h5>
+              </div>
             </div>
-          </div>
-          <div class="col-8 col-md-9 text-start d-flex">
-            <h5 class="card-title m-0 my-auto">Behy</h5>
+            <div class="col-8 col-md-9 text-start d-flex">
+              <h5 class="card-title m-0 my-auto">{{ player.userName }}</h5>
+            </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="card">
-      <div class="card-body">
-        <div class="row">
-          <div class="col-4 col-md-3">
-            <div class="square">
-              <h5>
-                <font-awesome-icon icon="star"/> 114
-              </h5>
-            </div>
-          </div>
-          <div class="col-8 col-md-9 text-start d-flex">
-            <h5 class="card-title m-0 my-auto">ASS</h5>
-          </div>
-        </div>
-      </div>
+    <div v-else>
+      Loading rankings...
     </div>
   </div>
 </template>
 
 <script>
+export default {
+  name: "SeasonRanking",
+  data() {
+    return {
+      submissions: [],
+      sortedSubmissions: [],
+      year: 2023
+    };
+  },
+  created() {
+    this.reset();
+  },
+  computed: {
+    rankedPlayers() {
+      if (this.submissions.rankings) {
+        // Flatten the resultsData and calculate points for each player
+        const flatResults = Object.values(this.submissions.rankings)
+            .flatMap(month => Object.values(month.submissions))
+            .reduce((acc, player) => {
+              const points = this.calculatePoints(acc.length + 1);
+              const existingPlayer = acc.find(p => p.userName === player.userName);
 
+              if (existingPlayer) {
+                existingPlayer.points += points;
+              } else {
+                acc.push({ userName: player.userName, points });
+              }
+
+              return acc;
+            }, []);
+
+        // Sort players by points in descending order
+        return flatResults.sort((a, b) => b.points - a.points);
+      } else {
+        return [];
+      }
+    }
+  },
+  methods: {
+    async reset() {
+      await this.loadRankings();
+    },
+    calculatePoints(position) {
+      // Your points calculation logic based on the position
+      // Adjust this based on your requirements
+      if (position === 1) {
+        return 6;
+      } else if (position === 2) {
+        return 4;
+      } else if (position === 3) {
+        return 3;
+      } else if (position === 4 || position === 5) {
+        return 2;
+      } else {
+        return 1;
+      }
+    },
+    async loadRankings() {
+      await this.getSubmissions();
+      await this.sortSubmissions();
+    },
+    async getSubmissions() {
+      this.submissions = await this.$store.getters['ranking/currentSeason'];
+    },
+    sortSubmissions() {
+      // Your sorting logic
+    },
+  }
+}
 </script>
 
 <style scoped>

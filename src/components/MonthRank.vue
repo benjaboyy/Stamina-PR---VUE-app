@@ -2,14 +2,14 @@
   <div class="about container">
     <h1>Ranking {{ monthName }} {{ year }}</h1>
     <p>Here is a list of all the submissions</p>
-    <router-link :to="`/monthly/${previousYear}/${previousMonth}`" class="btn btn-primary mb-3" @click="reloadPage">
+    <button class="btn btn-primary mb-3" @click="navigateToPreviousMonth">
       <font-awesome-icon icon="chevron-left"/>
       {{ previousMonthName }}
-    </router-link>
-    <router-link v-if="!isCurrentMonth" :to="`/monthly/${nextYear}/${nextMonth}`" class="btn ms-2 btn-primary mb-3" @click="reloadPage">
+    </button>
+    <button v-if="!isCurrentMonth" class="btn ms-2 btn-primary mb-3" @click="navigateToNextMonth">
       {{ nextMonthName }}
-    <font-awesome-icon icon="chevron-right"/>
-    </router-link>
+      <font-awesome-icon icon="chevron-right"/>
+    </button>
     <div class="card mb-2" v-for="(submission, index) in sortedSubmissions" :key="submission.userName">
       <div class="card-body">
         <div class="row">
@@ -60,20 +60,25 @@ export default {
       ]
     };
   },
-  props: {
-    year: Number, // Pass the year as a prop
-    month: Number, // Pass the month as a prop
-  },
   async created() {
     await this.getSubmissions();
     await this.sortSubmissions(); // Call the sortSubmissions method here
   },
+  watch: {
+    // Watch for changes in the route parameters and update the component accordingly
+    '$route'() {
+      this.getSubmissions();
+      this.sortSubmissions();
+    },
+  },
   methods:{
-    reloadPage() {
-      // reload on previous moth URL
-      setTimeout(() => {
-        location.reload();
-      }, 100);
+    // Use Vue Router's push method to navigate without a full page reload
+    navigateToPreviousMonth() {
+      this.$router.push({ path: `/monthly/${this.previousYear}/${this.previousMonth}` });
+    },
+
+    navigateToNextMonth() {
+      this.$router.push({ path: `/monthly/${this.nextYear}/${this.nextMonth}` });
     },
     stars(index) {
       // Calculate the star count based on the index
@@ -107,6 +112,12 @@ export default {
 
   },
   computed: {
+    year() {
+      return this.$route.params.year;
+    },
+    month() {
+      return this.$route.params.month;
+    },
     monthName() {
       return this.months[this.month - 1] || "";
     },
