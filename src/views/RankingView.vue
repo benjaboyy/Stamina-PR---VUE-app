@@ -44,23 +44,37 @@ export default {
   computed: {
     rankedPlayers() {
       if (this.submissions.rankings) {
-        // Flatten the resultsData and calculate points for each player
+        // Flatten the resultsData and calculate points for each player in each month
         const flatResults = Object.values(this.submissions.rankings)
-            .flatMap(month => Object.values(month.submissions))
+            .flatMap(month => {
+              const monthResults = Object.values(month.submissions);
+              const sortedMonthResults = monthResults.sort((a, b) => {
+                if (a.difficulty !== b.difficulty) {
+                  return b.difficulty - a.difficulty; // Higher difficulty comes first
+                }
+                return b.bpm - a.bpm; // If difficulties are the same, higher bpm comes first
+              });
+
+              return sortedMonthResults.map((player, index) => {
+                return {
+                  userName: player.userName,
+                  points: this.calculatePoints(index + 1)
+                };
+              });
+            })
             .reduce((acc, player) => {
-              const points = this.calculatePoints(acc.length + 1);
               const existingPlayer = acc.find(p => p.userName === player.userName);
 
               if (existingPlayer) {
-                existingPlayer.points += points;
+                existingPlayer.points += player.points;
               } else {
-                acc.push({ userName: player.userName, points });
+                acc.push(player);
               }
 
               return acc;
             }, []);
 
-        // Sort players by points in descending order
+        // Sort players by total points in descending order
         return flatResults.sort((a, b) => b.points - a.points);
       } else {
         return [];
@@ -75,12 +89,10 @@ export default {
       // Your points calculation logic based on the position
       // Adjust this based on your requirements
       if (position === 1) {
-        return 6;
-      } else if (position === 2) {
         return 4;
-      } else if (position === 3) {
+      } else if (position === 2) {
         return 3;
-      } else if (position === 4 || position === 5) {
+      } else if (position === 3) {
         return 2;
       } else {
         return 1;
@@ -99,6 +111,7 @@ export default {
   }
 }
 </script>
+
 
 <style scoped>
 .square {
