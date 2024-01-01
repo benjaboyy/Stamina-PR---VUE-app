@@ -14,7 +14,5 @@ import MonthRank from "@/components/MonthRank";
 export default {
   name: "MonthlyView",
   components: {MonthRank},
-  // example of url
-  // http://localhost:8080/monthly/2023/7
 }
 </script>

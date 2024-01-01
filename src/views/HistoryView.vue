@@ -31,7 +31,7 @@ export default {
         "September", "October", "November", "December"
       ],
       seasons: [
-        "2023", "2022"
+        "2024"
       ]
     }
   },

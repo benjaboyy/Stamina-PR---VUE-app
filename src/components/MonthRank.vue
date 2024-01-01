@@ -132,14 +132,14 @@ export default {
       return now.getFullYear() === parseInt(this.year) && now.getMonth() + 1 === parseInt(this.month, 10);
     },
     previousMonth() {
-      if (this.month === 1) {
+      if (this.month == 1) {
         return 12;
       } else {
         return this.month - 1;
       }
     },
     previousYear() {
-      if (this.month === 1) {
+      if (this.month == 1) {
         return this.year - 1;
       } else {
         return this.year;
@@ -147,16 +147,15 @@ export default {
     },
     nextMonth() {
       const currentMonth = parseInt(this.month, 10);
-      if (currentMonth === 12) {
+      if (currentMonth == 12) {
         return 1; // If the current month is December, go to January (1) of the same year.
       } else {
         return currentMonth + 1; // Otherwise, increment the current month by 1.
       }
     },
     nextYear() {
-      const currentMonth = parseInt(this.year, 10);
-      if (currentMonth === 12) {
-        return this.year + 1; // If the current month is December, increment the year by 1.
+      if (this.month == 12) {
+        return parseInt(this.year) + 1; // If the current month is December, increment the year by 1.
       } else {
         return this.year; // Otherwise, stay in the same year.
       }

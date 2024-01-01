@@ -13,7 +13,7 @@
     <router-link to="/" v-if="submitted" class="btn btn-primary mb-5" @click="submitted = !submitted">Back to home</router-link>
     <!--      scan qr code button-->
     <button class="btn btn-secondary py-3 w-100 mb-3">
-      <font-awesome-icon icon="ranking-star" /> August submission</button>
+      <font-awesome-icon icon="ranking-star" /> {{ monthName }} 2024 submission</button>
     <form v-if="!submitted" @submit.prevent="submit">
       <div class="form-floating">
         <input v-model="userName" type="text" class="form-control" name="userName" id="userName" placeholder="tag">
@@ -49,7 +49,21 @@ export default {
       bpm: '',
       imageUrl: '',
       difficulty: '',
-      submitted: false
+      submitted: false,
+      months: [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December"
+      ]
     }
   },
   methods: {
@@ -76,6 +90,12 @@ export default {
       this.difficulty = '';
       this.submitted = true;
     }
+  },
+  computed: {
+    monthName() {
+      let currentDate = new Date();
+      return this.months[currentDate.getMonth()] || "";
+    },
   }
 }
 </script>

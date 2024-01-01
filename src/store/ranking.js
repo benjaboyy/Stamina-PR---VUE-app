@@ -47,15 +47,21 @@ export default {
                 .then((data) => {
                     const seasons = [];
                     for (const key in data) {
-                        const season = {
-                            year: key,
-                            isCurrent: data[key].isCurrent,
-                            rankings: data[key].rankings
-                        };
-                        seasons.push(season); // Push each season into the array
+                        if (data[key].rankings && Array.isArray(data[key].rankings)) {
+                            const rankingFiltered = data[key].rankings.filter((ranking) => ranking !== null)
+                            const season = {
+                                year: key,
+                                isCurrent: data[key].isCurrent,
+                                rankings: rankingFiltered
+                            };
+                            seasons.push(season); // Push each season into the array
+                        } else {
+                            console.error(`Invalid rankings data for year ${key}`);
+                        }
                     }
                     context.commit('setSeasons', seasons); // Set the entire array
                 })
+
         },
         addToRanking(context, payload) {
             const submission = {

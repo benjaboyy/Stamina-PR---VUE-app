@@ -35,7 +35,7 @@ export default {
     return {
       submissions: [],
       sortedSubmissions: [],
-      year: 2023
+      year: 2024
     };
   },
   created() {
