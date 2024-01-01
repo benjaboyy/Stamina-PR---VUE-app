@@ -95,7 +95,7 @@ export default {
     },
     getSubmissions() {
       // Get submissions for the specified month and year
-      this.submissions = this.$store.getters["ranking/rankingOfMonth"](this.month, this.year);
+      this.submissions = this.$store.getters["ranking/rankingOfMonth"](this.month-1, this.year);
     },
     sortSubmissions() {
       if (this.submissions && typeof this.submissions === 'object') {

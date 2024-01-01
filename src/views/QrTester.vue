@@ -1,56 +1,58 @@
 <template>
   <div class="container">
-    <button class="btn btn-primary btn-lg" @click="startScanner">Scan QR</button>
-    <div class="card mt-3">
-      <qrcode-stream ref="qrcodeStream" @decode="onDecode" :preferFrontCamera="true"></qrcode-stream>
-      <div v-if="scannedData">{{ scannedData }}</div>
+    <div class="card mt-3 p-3">
+      <qrcode-stream ref="qrcodeStream" @detect="onDetect"></qrcode-stream>
+      <div v-if="scannedData">
+        <div v-for="(value, key) in scannedData" :key="key">
+          <p>{{ key }}: {{ value }}</p>
+        </div>
+        <p>Raw:</p>
+        <p>{{ scannedData }}</p>
+      </div>
+    </div>
+    <div class="card mt-3 p-3">
+      <qrcode-drop-zone @detect="onDetect"></qrcode-drop-zone>
+      <qrcode-capture></qrcode-capture>
     </div>
   </div>
 </template>
 
 <script>
-import { QrcodeStream } from "vue-qrcode-reader";
+import { QrcodeStream, QrcodeDropZone, QrcodeCapture } from 'vue-qrcode-reader'
 export default {
   data() {
     return {
       scannedData: {},
+      decodedData: '',
     };
   },
   components: {
-    QrcodeStream,
-  },
-  mounted() {
-    this.extractValues();
+    QrcodeStream, QrcodeCapture, QrcodeDropZone
   },
   methods: {
+    extractValues(decodedValue) {
+      const rawValue = decodedValue[0].rawValue;
+      const url = new URL(rawValue);
+      const params = new URLSearchParams(url.search);
+      // convert score to 7590 > 75.90
+      const score = params.get("s") / 100;
+      const failed = params.get("f");
+      const time = params.get("r");
+      const version = params.get("v");
+      const hash = params.get("h");
 
-    extractValues() {
-      // Get the current URL
-      const url = new URL("https://groovestats.com/qr.php?h=&s=7507&f=0&r=100&v=2");
-
-      // Convert URL to string
-      const urlString = url.toString();
-
-      // strip https://groovestats.com/qr.php from url
-      const stripped = urlString.replace("https://groovestats.com/qr.php", "");
-
-      // Use URLSearchParams to get the values of "s" and "r" parameters
-      const params = new URLSearchParams(stripped);
-
-      // Extract the values s and r and put it in scannedData
       this.scannedData = {
-        s: params.get("s"),
-        r: params.get("r"),
+        'score': score,
+        'failed': failed,
+        'time': time,
+        'version': version,
+        'hash': hash,
       };
-    },
-
-    startScanner() {
-      this.scannedData = null; // Reset previous scan data
-      this.$refs.qrcodeStream.start(); // Start scanning
 
     },
-    onDecode(decodedValue) {
-      this.scannedData = decodedValue;
+    onDetect(decodedValue) {
+      this.extractValues(decodedValue);
+      this.decodedData = decodedValue;
     },
   },
 };
