@@ -7,7 +7,7 @@
           <p>{{ key }}: {{ value }}</p>
         </div>
         <p>Raw:</p>
-        <p>{{ scannedData }}</p>
+        <p>{{ decodedData }}</p>
       </div>
     </div>
     <div class="card mt-3 p-3">
@@ -51,8 +51,8 @@ export default {
 
     },
     onDetect(decodedValue) {
-      this.extractValues(decodedValue);
       this.decodedData = decodedValue;
+      this.extractValues(decodedValue);
     },
   },
 };
