@@ -4,7 +4,7 @@
     <p>Dutch community highest PR list</p>
     <!-- Loop through sortedSubmissions and create a card for each submission -->
     <div v-for="(submission, index) in sortedSubmissions" :key="index" class="card">
-      <div class="float-end text-primary"><small>12-12-2023</small></div>
+      <div class="float-end text-primary"><small><font-awesome-icon :icon="['far', 'calendar']" /> {{ submission.date }}</small></div>
       <div class="card-body">
         <div class="row">
           <div class="col-3 col-md-2">

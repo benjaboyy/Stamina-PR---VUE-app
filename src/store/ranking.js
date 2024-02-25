@@ -64,11 +64,13 @@ export default {
 
         },
         addToRanking(context, payload) {
+            let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
             const submission = {
                 userName: payload.userName,
                 songName: payload.songName,
                 bpm: payload.bpm,
-                difficulty: payload.difficulty
+                difficulty: payload.difficulty,
+                date: months[payload.month - 1] + " " + payload.year
             };
             fetch(`${API_BASE_URL}/rankings/${payload.year}/rankings/${payload.month}/submissions/${payload.userName}.json`, {
                 method: 'PUT',
@@ -118,6 +120,7 @@ export default {
                                     difficulty: submission.difficulty,
                                     songName: submission.songName,
                                     bpm: submission.bpm,
+                                    date: submission.date
                                 };
                             }
                         }

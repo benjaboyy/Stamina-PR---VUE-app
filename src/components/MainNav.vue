@@ -2,8 +2,11 @@
   <div class="hello container">
     <div class="row g-3">
       <div class="col-12">
+        <router-link to="/about" class="btn btn-link "><font-awesome-icon icon="circle-info" /> About the stamina PR</router-link>
+      </div>
+      <div class="col-12">
         <router-link to="/submit" class="btn btn-primary py-2 btn-lg w-100"><font-awesome-icon icon="paper-plane" /> Submit PR</router-link>
-        <router-link to="/qrtester" class="btn btn-dark py-2 mt-3 btn-lg w-100"><font-awesome-icon icon="qrcode" /> Scan QR</router-link>
+<!--        <router-link to="/qrtester" class="btn btn-dark py-2 mt-3 btn-lg w-100"><font-awesome-icon icon="qrcode" /> Scan QR</router-link>-->
       </div>
       <div class="col-6">
         <router-link :to="'/monthly/' + currentYear + '/' + currentMonth" class="btn btn-dark d-flex square w-100">
@@ -37,13 +40,8 @@
           </div>
         </router-link>
       </div>
-      <div class="col-12">
-        <router-link to="/about" class="btn btn-link "><font-awesome-icon icon="circle-info" /> About the stamina PR</router-link>
-      </div>
 <!--      payoff-->
       <p class="col-12 text-primary text-center mt-5">Made with <font-awesome-icon icon="heart" /> by <a href="https://ddrexp.nl">DDR-EXP</a></p>
-<!--      admin login link-->
-      <router-link to="/verify" class="col-12 text-primary small text-center mt-1">Admin login</router-link>
     </div>
   </div>
 </template>

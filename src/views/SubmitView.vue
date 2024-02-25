@@ -19,22 +19,27 @@
         <input v-model="userName" type="text" class="form-control" name="userName" id="userName" placeholder="tag">
         <label for="floatingInput">Player tag</label>
       </div>
+      <div v-if="noValidTag" class="alert alert-warning mt-2" role="alert">Not a valid tag</div>
       <div class="form-floating">
         <input v-model="songName" type="text" class="form-control" name="songName" id="songName" placeholder="song">
         <label for="floatingInput">Song name</label>
       </div>
+      <div v-if="noValidName" class="alert alert-warning mt-2" role="alert">Not a valid name</div>
       <div class="form-floating">
         <input v-model="bpm" type="text" class="form-control" name="bpm" id="bpm" placeholder="bpm">
         <label for="floatingInput">BPM</label>
       </div>
+      <div v-if="noValidBpm" class="alert alert-warning mt-2" role="alert">Not a valid BPM</div>
       <div class="form-floating">
         <input v-model="difficulty" type="text" class="form-control" name="difficulty" id="difficulty" placeholder="difficulty">
         <label for="floatingInput">Difficulty</label>
       </div>
-        <div class="form-floating">
+      <div v-if="noValidDifficulty" class="alert alert-warning mt-2" role="alert">Not a valid difficulty</div>
+      <div class="form-floating">
         <input v-model="imageUrl" type="text" class="form-control" name="imageUrl" id="imageUrl" placeholder="photo">
         <label for="floatingInput">Screenshot URL</label>
       </div>
+      <div v-if="noValidUrl" class="alert alert-warning mt-2" role="alert">You need to provide a valid URL of the screenshot</div>
       <button class="btn btn-primary w-100" type="submit"><font-awesome-icon icon="paper-plane" /> Submit</button>
     </form>
   </div>
@@ -63,12 +68,38 @@ export default {
         "October",
         "November",
         "December"
-      ]
+      ],
+      noValidTag: false,
+      noValidName: false,
+      noValidBpm: false,
+      noValidDifficulty: false,
+      noValidUrl: false
     }
   },
   methods: {
     submit() {
+      this.resetErrors();
       let currentDate = new Date();
+      if (this.userName === '') {
+        this.noValidTag = true;
+        return;
+      }
+      if (this.songName === '') {
+        this.noValidName = true;
+        return;
+      }
+      if (this.bpm === '' || isNaN(this.bpm) || this.bpm > 500) {
+        this.noValidBpm = true;
+        return;
+      }
+      if (this.difficulty === '' || this.difficulty > 50) {
+        this.noValidDifficulty = true;
+        return;
+      }
+      if (this.imageUrl === '' || !this.imageUrl.includes('http')) {
+        this.noValidUrl = true;
+        return;
+      }
       this.$store.dispatch('submission/submitSubmission', {
         userName: this.userName,
         songName: this.songName,
@@ -89,6 +120,14 @@ export default {
       this.imageUrl = '';
       this.difficulty = '';
       this.submitted = true;
+      this.resetErrors();
+    },
+    resetErrors() {
+      this.noValidTag = false;
+      this.noValidName = false;
+      this.noValidBpm = false;
+      this.noValidDifficulty = false;
+      this.noValidUrl = false;
     }
   },
   computed: {
