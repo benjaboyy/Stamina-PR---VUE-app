@@ -1,6 +1,7 @@
 $primary: #f15832;
 $primary-dark: #cb2f08;
 $secondary: #f8b127;
+$secondary-dark: #d18e0a;
 $light: #f5f5f5;
 $dark: #212529;
 
@@ -12,6 +13,10 @@ $dark: #212529;
   font-weight: 500;
   font-style: normal;
   letter-spacing: 2px;
+}
+
+.transitionMenu {
+  background-color: $light;
 }
 
 .anta-regular {
