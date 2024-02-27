@@ -22,7 +22,7 @@
             <div class="my-auto">
               <h5 class="card-title m-0">{{ submission.userName }}</h5>
               <p class="card-text m-0">{{ submission.songName }}</p>
-              <p class="card-text m-0">{{ submission.bpm }}</p>
+              <p class="card-text m-0">Bpm: {{ submission.bpm }}</p>
             </div>
           </div>
           <div class="col-3 col-md-2 text-end my-auto">

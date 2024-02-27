@@ -5,7 +5,7 @@
         <div class="container">
           <div class="row subMenu g-2">
             <div class="col-12">
-              <router-link :to="'/monthly/' + currentYear + '/' + currentMonth" class="btn btn-primary d-flex w-100">
+              <router-link @click="toggleShowMore" :to="'/monthly/' + currentYear + '/' + currentMonth" class="btn btn-primary d-flex w-100">
                 <div class="m-auto">
                   <font-awesome-icon class="fa-lg" icon="ranking-star" />
                   Ranking this month
@@ -13,7 +13,7 @@
               </router-link>
             </div>
             <div class="col-12">
-              <router-link to="/ranking" class="btn btn-primary d-flex w-100">
+              <router-link @click="toggleShowMore" to="/ranking" class="btn btn-primary d-flex w-100">
                 <div class="m-auto">
                   <font-awesome-icon class="fa-lg" icon="ranking-star" />
                   Seasonal Ranking
@@ -21,7 +21,7 @@
               </router-link>
             </div>
             <div class="col-12">
-              <router-link to="/hallOfFame" class="btn btn-primary d-flex w-100">
+              <router-link @click="toggleShowMore" to="/hallOfFame" class="btn btn-primary d-flex w-100">
                 <div class="m-auto">
                   <font-awesome-icon class="fa-lg" icon="trophy" />
                   Hall of fame
@@ -29,7 +29,7 @@
               </router-link>
             </div>
             <div class="col-12">
-              <router-link to="/history" class="btn btn-primary d-flex w-100">
+              <router-link @click="toggleShowMore" to="/history" class="btn btn-primary d-flex w-100">
                 <div class="m-auto">
                   <font-awesome-icon class="fa-lg" icon="timeline" />
                   Archive

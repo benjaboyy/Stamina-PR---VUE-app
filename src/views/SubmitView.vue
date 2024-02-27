@@ -92,7 +92,7 @@ export default {
         this.noValidBpm = true;
         return;
       }
-      if (this.difficulty === '' || this.difficulty > 50) {
+      if (this.difficulty === '' || isNaN(this.difficulty) || this.difficulty > 50) {
         this.noValidDifficulty = true;
         return;
       }

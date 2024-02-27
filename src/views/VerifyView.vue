@@ -1,7 +1,7 @@
 <template>
   <div class="about container">
     <h1>This is an verify page</h1>
-    <p>Here is a list of all the submissions</p>
+    <p>An list of all the submissions</p>
     <div v-for="submission in submissions" :key="submission.id">
       <transition name="fade">
         <div v-if="submission.approved === false || showAll" class="card mb-3">
