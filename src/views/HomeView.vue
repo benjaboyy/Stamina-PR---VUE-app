@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <img class="logo mb-3" alt="Vue logo" src="../assets/logo.png">
+    <img class="logo mb-3" alt="Logo with a windmill" src="../assets/logo.png">
     <MainNav/>
   </div>
 </template>

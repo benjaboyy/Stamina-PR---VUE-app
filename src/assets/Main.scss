@@ -6,7 +6,6 @@ $light: #f5f5f5;
 $dark: #212529;
 
 @import url('https://fonts.googleapis.com/css2?family=Anta&family=Bebas+Neue&family=Teko:wght@300..700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Anta&display=swap');
 
 * {
   font-family: "Bebas Neue", sans-serif;
@@ -15,8 +14,10 @@ $dark: #212529;
   letter-spacing: 2px;
 }
 
-.transitionMenu {
-  background-color: $light;
+@media (max-width: 768px) {
+  .transitionMenu {
+    background-color: $light;
+  }
 }
 
 .anta-regular {

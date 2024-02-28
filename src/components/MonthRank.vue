@@ -6,7 +6,7 @@
       <font-awesome-icon icon="chevron-left"/>
       {{ previousMonthName }}
     </button>
-    <button v-if="!isCurrentMonth" class="btn ms-2 btn-primary mb-3" @click="navigateToNextMonth">
+    <button :disabled="isCurrentMonth" :class="isCurrentMonth ? 'btn-dark' : 'btn-primary'" class="btn ms-2 btn-primary mb-3" @click="navigateToNextMonth">
       {{ nextMonthName }}
       <font-awesome-icon icon="chevron-right"/>
     </button>
@@ -88,6 +88,7 @@ export default {
         case 1:
           return 3;
         case 2:
+        case 3:
           return 2;
         default:
           return 1;
@@ -102,7 +103,10 @@ export default {
         const submissionArray = Object.values(this.submissions.submissions);
 
         this.sortedSubmissions = submissionArray.sort((a, b) => {
-          return b.difficulty - a.difficulty;
+          if (a.difficulty !== b.difficulty) {
+            return b.difficulty - a.difficulty; // Higher difficulty comes first
+          }
+          return b.bpm - a.bpm; // If difficulties are the same, higher bpm comes first
         });
       } else {
         // Handle the case where this.submissions is not a valid object

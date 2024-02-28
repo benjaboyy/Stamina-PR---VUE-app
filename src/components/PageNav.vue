@@ -1,7 +1,7 @@
 <template>
   <div class="menu">
     <transition name="fade">
-      <div v-if="showMore" class="px-3 py-2 transitionMenu text-white">
+      <div v-show="showMore" class="px-3 py-2 transitionMenu text-white">
         <div class="container">
           <div class="row subMenu g-2">
             <div class="col-12">
@@ -45,13 +45,13 @@
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
           <ul class="nav w-100 col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
             <li>
-              <router-link to="/" class="nav-link text-white">
+              <router-link @click="closeShowMore" to="/" class="nav-link text-white">
                 <font-awesome-icon icon="house" class="bi d-block mx-auto mb-1" />
                 Home
               </router-link>
             </li>
             <li>
-              <router-link to="/submit" class="nav-link text-white">
+              <router-link @click="closeShowMore" to="/submit" class="nav-link text-white">
                 <font-awesome-icon icon="paper-plane" class="bi d-block mx-auto mb-1" />
                 Submit
               </router-link>
@@ -81,6 +81,9 @@ export default {
     toggleShowMore () {
       this.showMore = !this.showMore
     },
+    closeShowMore () {
+      this.showMore = false
+    }
   },
   computed: {
     currentYear () {
@@ -126,11 +129,19 @@ li {
 .clickEvent {
   cursor: pointer;
 }
-/*fade in and out*/
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .5s;
+.fade-enter-active {
+  transition: opacity 0.3s ease;
 }
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+
+.fade-enter {
+  transition: opacity 0.3s ease;
+}
+
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.fade-leave-to, .fade-enter-from  {
   opacity: 0;
 }
 

@@ -92,7 +92,7 @@ export default {
         return 4;
       } else if (position === 2) {
         return 3;
-      } else if (position === 3) {
+      } else if (position === 3 || position === 4) {
         return 2;
       } else {
         return 1;

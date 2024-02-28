@@ -19,22 +19,18 @@
       <tbody>
       <tr>
         <td>1st place</td>
-        <td>6 points</td>
-      </tr>
-      <tr>
-        <td>2nd place</td>
         <td>4 points</td>
       </tr>
       <tr>
-        <td>3rd place</td>
+        <td>2nd place</td>
         <td>3 points</td>
       </tr>
       <tr>
-        <td>4th place</td>
+        <td>3rd place</td>
         <td>2 points</td>
       </tr>
       <tr>
-        <td>5th place</td>
+        <td>4th place</td>
         <td>2 points</td>
       </tr>
       <tr>
