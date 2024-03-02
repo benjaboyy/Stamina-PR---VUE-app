@@ -35,7 +35,23 @@
         <label for="floatingInput">Difficulty</label>
       </div>
       <div v-if="noValidDifficulty" class="alert alert-warning mt-2" role="alert">Not a valid difficulty</div>
-      <div class="form-floating">
+      <p>How to prove your score?</p>
+      <div class="card mb-3">
+        <div class="card-body text-start">
+          <a class="btn btn-primary float-end" href="https://discord.com/invite/y8fDsxa6Aj">Discord</a>
+          <div class="">
+            <label class=" active">
+              <input type="radio" name="options" value="set" id="option1"  v-model="toggleProof" autocomplete="off" checked> Screenshot URL
+            </label>
+          </div>
+          <div>
+            <label class="">
+              <input type="radio" name="options"  value="" id="option2"  v-model="toggleProof" autocomplete="off"> Upload in Discord
+            </label>
+          </div>
+        </div>
+      </div>
+      <div v-if="toggleProof" class="form-floating">
         <input v-model="imageUrl" type="text" class="form-control" name="imageUrl" id="imageUrl" placeholder="photo">
         <label for="floatingInput">Screenshot URL</label>
       </div>
@@ -52,6 +68,7 @@ export default {
       userName: '',
       songName: '',
       bpm: '',
+      toggleProof: 'set',
       imageUrl: '',
       difficulty: '',
       submitted: false,
@@ -77,6 +94,9 @@ export default {
     }
   },
   methods: {
+    toggleTheProof() {
+      this.toggleProof = !this.toggleProof;
+    },
     submit() {
       this.resetErrors();
       let currentDate = new Date();
@@ -96,7 +116,7 @@ export default {
         this.noValidDifficulty = true;
         return;
       }
-      if (this.imageUrl === '' || !this.imageUrl.includes('http')) {
+      if ((this.imageUrl === '' || !this.imageUrl.includes('http')) && this.toggleProof === 'set') {
         this.noValidUrl = true;
         return;
       }
