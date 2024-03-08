@@ -121,7 +121,7 @@ export default {
         return;
       }
       this.$store.dispatch('submission/submitSubmission', {
-        userName: this.userName,
+        userName: this.userName.toLowerCase(),
         songName: this.songName,
         bpm: this.bpm,
         imageUrl: this.imageUrl,
