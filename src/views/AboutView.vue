@@ -1,7 +1,7 @@
 <template>
   <div class="about">
     <PageNav/>
-    <img class="logo mb-3" alt="Vue logo" src="../assets/logo.png">
+    <img class="logo mb-3 px-3" alt="Vue logo" src="../assets/logo.png">
     <h1>About Stamina PR</h1>
     <p>Stamina PR is a website that allows you to submit your scores for the Dutch Stamina PR rankings. <br>
       Every month, the scores will be checked and the ranking will be updated. <br>

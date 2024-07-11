@@ -13,6 +13,8 @@
     "@fortawesome/free-regular-svg-icons": "^6.4.0",
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@fortawesome/vue-fontawesome": "^3.0.3",
+    "@lottiefiles/dotlottie-vue": "^0.4.2",
+    "@lottiefiles/dotlottie-web": "^0.28.0",
     "bootstrap": "^5.3.0",
     "core-js": "^3.8.3",
     "firebase-tools": "^12.4.2",
