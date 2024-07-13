@@ -1,18 +1,22 @@
 <template>
   <div class="container">
     <h1>Submit your PR</h1>
-    <p>Submit your score for this moths ranking
-      <router-link to="/about" class="btn btn-link "><font-awesome-icon icon="circle-info" /> How it works</router-link></p>
+    <p v-if="!submitted">Submit your score for this moths ranking
+      <router-link to="/about" class="btn btn-link "><font-awesome-icon icon="circle-info" /> How it works</router-link>
+    </p>
 <!--    alert after sending-->
+    <DotLottieVue
+        v-if="submitted"
+        class="logo my-0 mx-auto"
+        autoplay loop
+        src="https://lottie.host/6a8c022d-cc1e-4dbe-857c-83b3786e021d/hAAooLvrTv.json" />
     <div v-if="submitted" class="alert alert-success" role="alert">
       <h4 class="alert-heading">Well done!</h4>
-      <p>You successfully submitted personal monthly record</p>
-      <hr>
-      <p class="mb-0">You can check your submission in the history page or overal ranking after the admin approved it</p>
+      <p class="mb-0">You can check your submission in the history page or overall ranking after the admin approved it</p>
     </div>
     <router-link to="/" v-if="submitted" class="btn btn-primary mb-5" @click="submitted = !submitted">Back to home</router-link>
     <!--      scan qr code button-->
-    <button class="btn btn-secondary py-3 w-100 mb-3">
+    <button v-if="!submitted" class="btn btn-secondary py-3 w-100 mb-3">
       <font-awesome-icon icon="ranking-star" /> {{ monthName }} 2024 submission</button>
     <form v-if="!submitted" @submit.prevent="submit">
       <div class="form-floating">
@@ -61,8 +65,13 @@
   </div>
 </template>
 <script>
+
+import { DotLottieVue } from '@lottiefiles/dotlottie-vue'
 export default {
   name: "SubmitView",
+  components: {
+    DotLottieVue
+  },
   data() {
     return {
       userName: '',
