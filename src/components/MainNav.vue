@@ -12,7 +12,7 @@
         <router-link :to="'/monthly/' + currentYear + '/' + currentMonth" class="btn btn-dark d-flex square w-100">
           <div class="m-auto">
             <font-awesome-icon class="fa-lg" icon="ranking-star" />
-            <br> Ranking last month
+            <br> Ranking this month
           </div>
         </router-link>
       </div>

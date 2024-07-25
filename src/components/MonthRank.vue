@@ -13,22 +13,22 @@
     <div class="card mb-2" v-for="(submission, index) in sortedSubmissions" :key="submission.userName">
       <div class="card-body">
         <div class="row">
-          <div class="col-3 col-md-2">
-            <div class="square shiny-gold">
+          <div class="col-3 col-md-2 d-flex">
+            <div class="square shiny-gold my-auto">
               <h5>{{ submission.difficulty }}</h5>
             </div>
           </div>
-          <div class="col-6 col-md-8 text-start d-flex">
+          <div class="col-5 col-md-8 text-start d-flex p-0">
             <div class="my-auto">
               <h5 class="card-title m-0">{{ submission.userName }}</h5>
               <p class="card-text m-0">{{ submission.songName }}</p>
               <p class="card-text m-0">Bpm: {{ submission.bpm }}</p>
             </div>
           </div>
-          <div class="col-3 col-md-2 text-end my-auto">
+          <div class="col-4 col-md-3 text-end my-auto ps-0">
             <h4 class="m-0 dark-gold">
               <font-awesome-icon icon="star"/>
-              +{{ stars(index) }}
+              +{{ stars(index, submission.difficulty) }}
             </h4>
           </div>
         </div>
@@ -80,18 +80,13 @@ export default {
     navigateToNextMonth() {
       this.$router.push({ path: `/monthly/${this.nextYear}/${this.nextMonth}` });
     },
-    stars(index) {
+    stars(index, difficulty) {
       // Calculate the star count based on the index
       switch (index) {
         case 0:
-          return 4;
-        case 1:
-          return 3;
-        case 2:
-        case 3:
-          return 2;
+          return difficulty + '+1';
         default:
-          return 1;
+          return difficulty;
       }
     },
     getSubmissions() {
