@@ -49,7 +49,6 @@ export default {
                         usedPoints: player.usedPoints + 1
                     })
                 });
-                console.log(player);
                 if (response.ok) {
                     commit('addPoints', player);
                 }

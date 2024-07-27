@@ -12,9 +12,9 @@
             {{ player.userName }}
           </h5>
           <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-            <button @click="add(player)" type="button" class="btn btn-dark"><font-awesome-icon icon="chevron-left"/></button>
+            <button @click="add(player)" type="button" class="btn btn-dark">-</button>
             <button type="button" class="btn btn-outline-dark disabled ammount--btn"><span class="shiny-gold">{{ player.points - player.usedPoints }}</span>/{{ player.points }}</button>
-            <button @click="substract(player)" type="button" class="btn btn-dark"><font-awesome-icon icon="chevron-right"/></button>
+            <button @click="substract(player)" type="button" class="btn btn-dark">+</button>
           </div>
         </div>
       </div>
@@ -40,8 +40,6 @@ export default {
     this.reset();
   },computed: {
     rankedPlayers() {
-      console.log("Submissions:", this.submissions);
-      console.log("Player Points:", this.playerPoints);
       if (this.submissions.rankings) {
         const flatResults = Object.values(this.submissions.rankings)
             .flatMap(month => {
