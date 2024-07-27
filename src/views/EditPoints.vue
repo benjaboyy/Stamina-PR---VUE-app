@@ -12,9 +12,9 @@
             {{ player.userName }}
           </h5>
           <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-            <button type="button" class="btn btn-dark"><font-awesome-icon icon="chevron-left"/></button>
-            <button type="button" class="btn btn-outline-dark disabled ammount--btn"><span class="shiny-gold">{{ player.points }}</span>/{{ player.points }}</button>
-            <button type="button" class="btn btn-dark"><font-awesome-icon icon="chevron-right"/></button>
+            <button @click="add(player)" type="button" class="btn btn-dark"><font-awesome-icon icon="chevron-left"/></button>
+            <button type="button" class="btn btn-outline-dark disabled ammount--btn"><span class="shiny-gold">{{ player.points - player.usedPoints }}</span>/{{ player.points }}</button>
+            <button @click="substract(player)" type="button" class="btn btn-dark"><font-awesome-icon icon="chevron-right"/></button>
           </div>
         </div>
       </div>
@@ -32,16 +32,17 @@ export default {
     return {
       submissions: [],
       sortedSubmissions: [],
-      year: 2024
+      year: 2024,
+      playerPoints: []
     };
   },
   created() {
     this.reset();
-  },
-  computed: {
+  },computed: {
     rankedPlayers() {
+      console.log("Submissions:", this.submissions);
+      console.log("Player Points:", this.playerPoints);
       if (this.submissions.rankings) {
-        // Flatten the resultsData and calculate points for each player in each month
         const flatResults = Object.values(this.submissions.rankings)
             .flatMap(month => {
               if (month.submissions) {
@@ -52,55 +53,55 @@ export default {
                   }
                   return b.bpm - a.bpm; // If difficulties are the same, higher bpm comes first
                 });
-                return sortedMonthResults.map((player) => {
-                  return {
-                    userName: player.userName,
-                    points: parseInt(player.difficulty)
-                  };
-                });
-              } else {
-                return []; // Return an empty array if submissions are undefined for this month
+                return sortedMonthResults.map(player => ({
+                  userName: player.userName,
+                  points: parseInt(player.difficulty),
+                }));
               }
+              return []; // Return an empty array if submissions are undefined for this month
             })
             .reduce((acc, player) => {
-              console.log('Accumulator:', acc); // Log the accumulator array
-              if (acc.length > 0) { // Check if accumulator is not empty
-                const existingPlayer = acc.find(p => p.userName === player.userName);
-
-                if (existingPlayer) {
-                  existingPlayer.points += player.points;
-                } else {
-                  acc.push(player);
-                }
+              const existingPlayer = acc.find(p => p.userName === player.userName);
+              if (existingPlayer) {
+                existingPlayer.points += player.points;
               } else {
-                acc.push(player); // Add player directly if accumulator is empty
+                acc.push(player);
               }
-
               return acc;
             }, []);
 
-        // Sort players by total points in descending order
+        if (Array.isArray(this.playerPoints)) {
+          flatResults.forEach(player => {
+            const userPoints = this.playerPoints.find(p => p.userName === player.userName);
+            player.usedPoints = userPoints ? userPoints.usedPoints : 0;
+          });
+        }
+
         return flatResults.sort((a, b) => b.points - a.points);
-      } else {
-        return [];
       }
+      return [];
     }
   },
   methods: {
     async reset() {
-      await this.loadRankings();
-    },
-    async loadRankings() {
+      await this.$store.dispatch('points/loadAllSeasonPoints');
       await this.getSubmissions();
+      await this.getPoints();
     },
     async getSubmissions() {
       this.submissions = await this.$store.getters['ranking/currentSeason'];
     },
     async getPoints() {
-      // Get points for the selected player
+      const points = await this.$store.getters['points/pointsSeason'](this.year);
+      this.playerPoints = Array.isArray(points) ? points : [];
     },
-    updatePoints() {
-      // Update points for the selected player
+    async add(player) {
+      await this.$store.dispatch('points/add', player);
+      await this.getPoints();
+    },
+    async substract(player) {
+      await this.$store.dispatch('points/substract', player, this.year);
+      await this.getPoints();
     },
   }
 }
