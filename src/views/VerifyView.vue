@@ -26,6 +26,9 @@
       </transition>
     </div>
     <button class="btn btn-primary mb-5" @click="showAll = !showAll">Show all</button>
+    <router-link to="/points" class="btn btn-outline-primary ms-2 mb-5">
+      Points screen
+    </router-link>
   </div>
 </template>
 

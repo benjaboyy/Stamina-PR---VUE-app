@@ -46,6 +46,11 @@ const routes = [
     path: '/qrtester',
     name: 'qrTester',
     component: () => import(/* webpackChunkName: "qrTester" */ '../views/QrTester.vue')
+  },
+  {
+    path: '/points',
+    name: 'points',
+    component: () => import(/* webpackChunkName: "qrTester" */ '../views/EditPoints.vue')
   }
 ]
 

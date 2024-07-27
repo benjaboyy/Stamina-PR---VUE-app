@@ -2,6 +2,7 @@ import { createStore } from 'vuex'
 
 import submissionModule from './submission.js'
 import rankingModule from './ranking.js'
+import pointsModule from './points.js'
 
 const store = createStore({
   state: {
@@ -9,6 +10,7 @@ const store = createStore({
   modules: {
     submission: submissionModule,
     ranking: rankingModule,
+    points: pointsModule
   }
 });
 
