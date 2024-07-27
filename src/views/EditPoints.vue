@@ -116,10 +116,11 @@ export default {
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
 .shiny-gold {
-  color: #f9a602;
+  color: #cb7b03;
 }
 .ammount--btn {
   width: 100px;
+  font-weight: bold;
 }
 .disabled {
   opacity: 1;
