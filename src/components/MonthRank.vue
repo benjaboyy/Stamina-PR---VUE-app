@@ -18,7 +18,7 @@
               <h5>{{ submission.difficulty }}</h5>
             </div>
           </div>
-          <div class="col-5 col-md-8 text-start d-flex p-0">
+          <div class="col-5 col-md-7 text-start d-flex p-0">
             <div class="my-auto">
               <h5 class="card-title m-0">{{ submission.userName }}</h5>
               <p class="card-text m-0">{{ submission.songName }}</p>

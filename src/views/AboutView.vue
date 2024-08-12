@@ -7,38 +7,10 @@
       Every month, the scores will be checked and the ranking will be updated. <br>
       You are allowed to update your score as many times as you want (keep reasonable), but only the highest score will be used for the ranking for the current month.</p>
     <h3>Monthly submissions</h3>
-    <p>Every month, a ranking will be made based on the scores you have submitted. you get points based on your placement in the ranking.<br>
-      You can not choose the month so submit within the month you have played the song</p>
-    <table class="table-borderless table-striped table text-start mx-auto">
-      <thead>
-      <tr>
-        <th>Place</th>
-        <th>Points</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td>1st place</td>
-        <td>4 points</td>
-      </tr>
-      <tr>
-        <td>2nd place</td>
-        <td>3 points</td>
-      </tr>
-      <tr>
-        <td>3rd place</td>
-        <td>2 points</td>
-      </tr>
-      <tr>
-        <td>4th place</td>
-        <td>2 points</td>
-      </tr>
-      <tr>
-        <td>All other places</td>
-        <td>1 point</td>
-      </tr>
-      </tbody>
-    </table>
+    <p>Every month, a ranking will be made based on the scores submitted. <br>
+      You will receive points equal to your difficulty and 1st place will get +1 extra. <br>
+      Your points will be added to your lifetime total and can be used as currency to purchase items in the stamina shop. <br>
+      <a class="btn btn-outline-primary mb-2">Shop Soon</a></p>
     <h3>All time ranking</h3>
     <p>This ranking is based on the total amount of points you have for submitting in this season.</p>
     <h3>Hall of fame</h3>
@@ -46,7 +18,10 @@
     <h3>How to submit</h3>
     <p>On the submit page, you can submit your scores. You can do this by scanning a QR code, or by filling in the form. <br>
       If you are not using the QR code, you will need to make a screenshot of your score and upload it. <br>
-    Scores need to be confirmed manually before they are added to the ranking</p>
+    Scores need to be confirmed manually before they are added to the ranking <br>
+      <router-link to="/submit" class="btn btn-outline-primary mb-2">
+        Submit Score
+      </router-link></p>
     <h3>Archive</h3>
     <p>All confirmed submissions can be viewed here also from previous seasons</p>
   </div>
