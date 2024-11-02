@@ -56,6 +56,16 @@ const routes = [
     path: '/shop',
     name: 'shop',
     component: () => import(/* webpackChunkName: "shop" */ '../views/ShopView.vue')
+  },
+  {
+    path: '/hallOfFameKiosk',
+    name: 'hallOfFameKiosk',
+    component: () => import(/* webpackChunkName: "shop" */ '../kioskViews/HallOfFameKiosk.vue')
+  },
+  {
+    path: '/rankingKiosk',
+    name: 'rankingKiosk',
+    component: () => import(/* webpackChunkName: "ranking" */ '../kioskViews/RankingKiosk.vue')
   }
 ]
 
