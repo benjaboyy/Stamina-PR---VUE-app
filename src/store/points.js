@@ -9,13 +9,13 @@ export default {
         };
     },
     mutations: {
-        setPoints(state, points, year) {
+        setPoints(state, { points, year }) {
             if (!year) {
                 year = state.year;
             }
             state.points[year] = points;
         },
-        addPoints(state, { userName }, year) {
+        addPoints(state, { userName, year }) {
             if (!year) {
                 year = state.year;
             }
@@ -27,7 +27,7 @@ export default {
             }
             state.points[year][userName].usedPoints += 1;
         },
-        substractPoints(state, { userName }, year) {
+        substractPoints(state, { userName, year }) {
             if (!year) {
                 year = state.year;
             }
@@ -37,7 +37,7 @@ export default {
         }
     },
     actions: {
-        async loadAllSeasonPoints({ commit, state }, year) {
+        async loadAllSeasonPoints({ commit, state }, { year }) {
             if (!year) {
                 year = state.year;
             }
@@ -45,13 +45,14 @@ export default {
                 const response = await fetch(`${API_BASE_URL}/points/${year}.json`);
                 if (response.ok) {
                     const data = await response.json();
-                    commit('setPoints', data, year);
+                    commit('setPoints', { points: data, year });
                 }
             } catch (error) {
                 console.error('Error loading points', error);
             }
         },
-        async add({ commit, state }, player, year) {
+
+        async add({ commit, state }, { player, year }) {
             if (!year) {
                 year = state.year;
             }
@@ -63,13 +64,13 @@ export default {
                     })
                 });
                 if (response.ok) {
-                    commit('addPoints', { userName: player.userName }, year);
+                    commit('addPoints', { userName: player.userName, year });
                 }
             } catch (error) {
                 console.error('Error adding points', error);
             }
         },
-        async substract({ commit, state }, player, year) {
+        async substract({ commit, state }, { player, year }) {
             if (!year) {
                 year = state.year;
             }
@@ -81,7 +82,7 @@ export default {
                     })
                 });
                 if (response.ok) {
-                    commit('substractPoints', { userName: player.userName }, year);
+                    commit('substractPoints', { userName: player.userName, year });
                 }
             } catch (error) {
                 console.error('Error substracting points', error);
@@ -90,9 +91,6 @@ export default {
     },
     getters: {
         pointsSeason: (state) => (year) => {
-            if (year) {
-                state.points[year] = year;
-            }
             const yearPoints = state.points[year] || {};
             return Object.keys(yearPoints).map(userName => ({
                 userName,

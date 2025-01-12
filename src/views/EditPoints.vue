@@ -1,16 +1,7 @@
 <template>
   <div class="about container">
     <h1>Points {{ year }}</h1>
-    <router-link to="/verify" class="btn btn-outline-primary mb-3">
-      Score verification
-    </router-link>
-    <router-link to="/points/2024" class="btn btn-outline-primary mb-3">
-      2024
-    </router-link>
-    <button @click="navigateToPoints2025" class="btn btn-outline-primary mb-3">
-      2025
-    </button>
-
+    <PageNavAdmin />
     <div v-if="rankedPlayers.length > 0">
       <div v-for="(player, index) in rankedPlayers" :key="index">
         <div class="d-flex justify-content-between mb-2">
@@ -32,13 +23,17 @@
 </template>
 
 <script>
+import PageNavAdmin from "@/components/PageNavAdmin.vue";
 export default {
   name: "SeasonRanking",
+  components: {
+    PageNavAdmin
+  },
   data() {
     return {
       submissions: [],
       sortedSubmissions: [],
-      year: this.$route.params.year || "2024",
+      year: this.$route.params.year || "2025",
       playerPoints: []
     };
   },
@@ -88,11 +83,8 @@ export default {
     }
   },
   methods: {
-    navigateToPoints2025() {
-      this.$router.push({ path: `/points/2025` });
-    },
     async reset() {
-      await this.$store.dispatch('points/loadAllSeasonPoints', this.year);
+      await this.$store.dispatch('points/loadAllSeasonPoints', { year: this.year });
       await this.getSubmissions();
       await this.getPoints();
     },
@@ -104,16 +96,15 @@ export default {
       this.playerPoints = Array.isArray(points) ? points : [];
     },
     async add(player) {
-      await this.$store.dispatch('points/add', player, this.year);
+      await this.$store.dispatch('points/add', {player, year: this.year});
       await this.getPoints();
     },
     async substract(player) {
-      await this.$store.dispatch('points/substract', player, this.year);
+      await this.$store.dispatch('points/substract', {player, year: this.year});
       await this.getPoints();
     },
   },
   watch: {
-    // Watch for changes in the route parameters and update the component accordingly
     '$route'() {
       this.year = this.$route.params.year || "2024";
       this.reset();
@@ -122,7 +113,6 @@ export default {
 }
 </script>
 
-
 <style scoped>
 .card {
   margin-top: 1rem;
@@ -130,13 +120,16 @@ export default {
   box-shadow: 0 0 2px 1px rgba(255, 255, 255, 0.8) inset;
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
+
 .shiny-gold {
   color: #cb7b03;
 }
+
 .ammount--btn {
   width: 100px;
   font-weight: bold;
 }
+
 .disabled {
   opacity: 1;
 }

@@ -1,6 +1,7 @@
 <template>
   <div class="about container">
     <h1>This is an verify page</h1>
+    <PageNavAdmin />
     <p>An list of all the submissions</p>
     <div v-for="submission in submissions" :key="submission.id">
       <transition name="fade">
@@ -33,7 +34,10 @@
 </template>
 
 <script>
+import PageNavAdmin from "@/components/PageNavAdmin.vue";
+
 export default {
+  components: {PageNavAdmin},
   data() {
     return {
       showAll: false,
