@@ -2,7 +2,13 @@
   <div class="about container">
     <h1>This is an verify page</h1>
     <PageNavAdmin />
-    <p>An list of all the submissions</p>
+    <h3>An list of all the submissions</h3>
+<!--    if no unapproved submissions than show message-->
+    <div v-if="unapprovedSubmissions.length === 0 && !showAll">
+      <div class="my-3">
+        <i>- No unapproved submissions -</i>
+      </div>
+    </div>
     <div v-for="submission in submissions" :key="submission.id">
       <transition name="fade">
         <div v-if="submission.approved === false || showAll" class="card mb-3">
@@ -27,9 +33,6 @@
       </transition>
     </div>
     <button class="btn btn-primary mb-5" @click="showAll = !showAll">Show all</button>
-    <router-link to="/points" class="btn btn-outline-primary ms-2 mb-5">
-      Points screen
-    </router-link>
   </div>
 </template>
 
@@ -55,6 +58,9 @@ export default {
   computed: {
     submissions() {
       return this.$store.getters['submission/getSubmissions']
+    },
+    unapprovedSubmissions() {
+      return this.submissions.filter(submission => !submission.approved)
     }
   },
 }
