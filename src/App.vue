@@ -25,7 +25,6 @@ export default {
     async dataGetter() {
       this.loaded = false;
       await this.$store.dispatch('submission/loadSubmissions'); // load submissions
-      // load season for 2023
       await this.$store.dispatch("ranking/loadAllSeasonRankings");
       this.loaded = true;
     }

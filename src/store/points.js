@@ -9,39 +9,52 @@ export default {
         };
     },
     mutations: {
-        setPoints(state, points) {
-            state.points[state.year] = points;
-        },
-        addPoints(state, { userName }) {
-            if (!state.points[state.year]) {
-                state.points[state.year] = {};
+        setPoints(state, points, year) {
+            if (!year) {
+                year = state.year;
             }
-            if (!state.points[state.year][userName]) {
-                state.points[state.year][userName] = { usedPoints: 0 };
-            }
-            state.points[state.year][userName].usedPoints += 1;
+            state.points[year] = points;
         },
-        substractPoints(state, { userName }) {
-            if (state.points[state.year] && state.points[state.year][userName]) {
-                state.points[state.year][userName].usedPoints -= 1;
+        addPoints(state, { userName }, year) {
+            if (!year) {
+                year = state.year;
+            }
+            if (!state.points[year]) {
+                state.points[year] = {};
+            }
+            if (!state.points[year][userName]) {
+                state.points[year][userName] = { usedPoints: 0 };
+            }
+            state.points[year][userName].usedPoints += 1;
+        },
+        substractPoints(state, { userName }, year) {
+            if (!year) {
+                year = state.year;
+            }
+            if (state.points[year] && state.points[year][userName]) {
+                state.points[year][userName].usedPoints -= 1;
             }
         }
     },
     actions: {
-        async loadAllSeasonPoints({ commit, state }) {
-            const year = state.year;
+        async loadAllSeasonPoints({ commit, state }, year) {
+            if (!year) {
+                year = state.year;
+            }
             try {
                 const response = await fetch(`${API_BASE_URL}/points/${year}.json`);
                 if (response.ok) {
                     const data = await response.json();
-                    commit('setPoints', data);
+                    commit('setPoints', data, year);
                 }
             } catch (error) {
                 console.error('Error loading points', error);
             }
         },
-        async add({ commit, state }, player) {
-            const year = state.year;
+        async add({ commit, state }, player, year) {
+            if (!year) {
+                year = state.year;
+            }
             try {
                 const response = await fetch(`${API_BASE_URL}/points/${year}/${player.userName}.json`, {
                     method: 'PUT',
@@ -50,14 +63,16 @@ export default {
                     })
                 });
                 if (response.ok) {
-                    commit('addPoints', player);
+                    commit('addPoints', { userName: player.userName }, year);
                 }
             } catch (error) {
                 console.error('Error adding points', error);
             }
         },
-        async substract({ commit, state }, player) {
-            const year = state.year;
+        async substract({ commit, state }, player, year) {
+            if (!year) {
+                year = state.year;
+            }
             try {
                 const response = await fetch(`${API_BASE_URL}/points/${year}/${player.userName}.json`, {
                     method: 'PUT',
@@ -66,7 +81,7 @@ export default {
                     })
                 });
                 if (response.ok) {
-                    commit('substractPoints', player);
+                    commit('substractPoints', { userName: player.userName }, year);
                 }
             } catch (error) {
                 console.error('Error substracting points', error);
@@ -75,6 +90,9 @@ export default {
     },
     getters: {
         pointsSeason: (state) => (year) => {
+            if (year) {
+                state.points[year] = year;
+            }
             const yearPoints = state.points[year] || {};
             return Object.keys(yearPoints).map(userName => ({
                 userName,

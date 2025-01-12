@@ -28,6 +28,11 @@ const routes = [
     component: () => import(/* webpackChunkName: "ranking" */ '../views/RankingView.vue')
   },
   {
+    path: '/ranking/:year',
+    name: 'rankingYear',
+    component: () => import(/* webpackChunkName: "ranking" */ '../views/RankingView.vue')
+  },
+  {
     path: '/monthly/:year/:month',
     name: 'monthly',
     component: () => import(/* webpackChunkName: "monthly" */ '../views/RankingMonth.vue')
@@ -43,6 +48,11 @@ const routes = [
     component: () => import(/* webpackChunkName: "hallOfFame" */ '../views/HallOfFameView.vue')
   },
   {
+    path: '/hallOfFame/:year',
+    name: 'hallOfFameYear',
+    component: () => import(/* webpackChunkName: "hallOfFame" */ '../views/HallOfFameView.vue')
+  },
+  {
     path: '/qrtester',
     name: 'qrTester',
     component: () => import(/* webpackChunkName: "qrTester" */ '../views/QrTester.vue')
@@ -52,6 +62,11 @@ const routes = [
     name: 'points',
     component: () => import(/* webpackChunkName: "qrTester" */ '../views/EditPoints.vue')
   },
+  {
+    path: '/points/:year',
+    name: 'pointsYear',
+    component: () => import(/* webpackChunkName: "qrTester" */ '../views/EditPoints.vue')
+    },
   {
     path: '/shop',
     name: 'shop',

@@ -32,7 +32,7 @@ export default {
     return {
       submissions: [],
       sortedSubmissions: [],
-      year: 2024
+      year: [ this.$route.params.year ] || ["2024", "2025"]
     };
   },
   created() {
@@ -47,8 +47,18 @@ export default {
       await this.sortSubmissions();
     },
     async getSubmissions() {
-      this.submissions = await this.$store.getters['ranking/getHighestRankingScores'];
-      // Further processing or actions related to submissions
+      const submissionsArray = await Promise.all(this.year.map(year => this.$store.getters['ranking/getHighestRankingScores'](year)));
+      const mergedSubmissions = {};
+
+      submissionsArray.forEach(submissions => {
+        for (const [user, submission] of Object.entries(submissions)) {
+          if (!mergedSubmissions[user] || submission.difficulty > mergedSubmissions[user].difficulty) {
+            mergedSubmissions[user] = submission;
+          }
+        }
+      });
+
+      this.submissions = mergedSubmissions;
     },
     sortSubmissions() {
       if (this.submissions && Object.keys(this.submissions).length > 0) {

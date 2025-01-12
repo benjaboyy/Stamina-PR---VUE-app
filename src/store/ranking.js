@@ -84,7 +84,10 @@ export default {
         },
     },
     getters: {
-        currentSeason(state) {
+        currentSeason: (state) => (year) => {
+            if (year) {
+                return state.seasons.find((season) => season.year === year);
+            }
             return state.seasons.find((season) => season.isCurrent);
         },
         rankingOfMonth: (state) => (month, year) => {
@@ -99,8 +102,8 @@ export default {
         getRanking(state) {
             return state.seasons;
         },
-        getHighestRankingScores: (state, getters) => {
-            const currentSeason = getters.currentSeason;
+        getHighestRankingScores: (state, getters) => (year) => {
+            const currentSeason = getters.currentSeason(year);
 
             if (currentSeason && currentSeason.rankings) {
                 const highestScores = {};

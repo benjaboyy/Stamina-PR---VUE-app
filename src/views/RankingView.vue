@@ -35,7 +35,8 @@ export default {
     return {
       submissions: [],
       sortedSubmissions: [],
-      year: 2024
+      // get year from url or set "2025"
+      year: this.$route.params.year || "2025"
     };
   },
   created() {
@@ -98,7 +99,8 @@ export default {
       await this.sortSubmissions();
     },
     async getSubmissions() {
-      this.submissions = await this.$store.getters['ranking/currentSeason'];
+      // add year to data
+      this.submissions = await this.$store.getters['ranking/currentSeason'](this.year);
     },
     sortSubmissions() {
       // Your sorting logic

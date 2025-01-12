@@ -4,6 +4,12 @@
     <router-link to="/verify" class="btn btn-outline-primary mb-3">
       Score verification
     </router-link>
+    <router-link to="/points/2024" class="btn btn-outline-primary mb-3">
+      2024
+    </router-link>
+    <button @click="navigateToPoints2025" class="btn btn-outline-primary mb-3">
+      2025
+    </button>
 
     <div v-if="rankedPlayers.length > 0">
       <div v-for="(player, index) in rankedPlayers" :key="index">
@@ -32,13 +38,14 @@ export default {
     return {
       submissions: [],
       sortedSubmissions: [],
-      year: 2024,
+      year: this.$route.params.year || "2024",
       playerPoints: []
     };
   },
   created() {
     this.reset();
-  },computed: {
+  },
+  computed: {
     rankedPlayers() {
       if (this.submissions.rankings) {
         const flatResults = Object.values(this.submissions.rankings)
@@ -81,27 +88,37 @@ export default {
     }
   },
   methods: {
+    navigateToPoints2025() {
+      this.$router.push({ path: `/points/2025` });
+    },
     async reset() {
-      await this.$store.dispatch('points/loadAllSeasonPoints');
+      await this.$store.dispatch('points/loadAllSeasonPoints', this.year);
       await this.getSubmissions();
       await this.getPoints();
     },
     async getSubmissions() {
-      this.submissions = await this.$store.getters['ranking/currentSeason'];
+      this.submissions = await this.$store.getters['ranking/currentSeason'](this.year);
     },
     async getPoints() {
       const points = await this.$store.getters['points/pointsSeason'](this.year);
       this.playerPoints = Array.isArray(points) ? points : [];
     },
     async add(player) {
-      await this.$store.dispatch('points/add', player);
+      await this.$store.dispatch('points/add', player, this.year);
       await this.getPoints();
     },
     async substract(player) {
       await this.$store.dispatch('points/substract', player, this.year);
       await this.getPoints();
     },
-  }
+  },
+  watch: {
+    // Watch for changes in the route parameters and update the component accordingly
+    '$route'() {
+      this.year = this.$route.params.year || "2024";
+      this.reset();
+    }
+  },
 }
 </script>
 
