@@ -10,7 +10,11 @@
     <p>Every month, a ranking will be made based on the scores submitted. <br>
       You will receive points equal to your difficulty and 1st place will get +1 extra. <br>
       Your points will be added to your lifetime total and can be used as currency to purchase items in the stamina shop. <br>
-      <a class="btn btn-outline-primary mb-2">Shop Soon</a></p>
+      <router-link to="/shop" class="btn btn-outline-primary mb-2">
+        See Shop
+      </router-link><br>
+      Items can be traded at conventions where DDREXP is hosting, <br>
+      at the Games Guild in Alphen aan den Rijn or at Pixel Arcade in 's Hertogenbosch.</p>
     <h3>All time ranking</h3>
     <p>This ranking is based on the total amount of points you have for submitting in this season.</p>
     <h3>Hall of fame</h3>

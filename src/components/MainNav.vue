@@ -1,10 +1,7 @@
 <template>
   <div class="hello container">
     <div class="row g-3">
-      <div class="col-12">
-        <router-link to="/about" class="btn btn-link "><font-awesome-icon icon="circle-info" /> About the stamina PR</router-link>
-      </div>
-      <div class="col-12">
+      <div class="col-12 mt-4">
         <router-link to="/submit" class="btn btn-primary py-2 btn-lg w-100"><font-awesome-icon icon="paper-plane" /> Submit a score</router-link>
 <!--        <router-link to="/qrtester" class="btn btn-dark py-2 mt-3 btn-lg w-100"><font-awesome-icon icon="qrcode" /> Scan QR</router-link>-->
       </div>
@@ -37,6 +34,22 @@
           <div class="m-auto">
             <font-awesome-icon class="fa-lg" icon="timeline" />
             <br> Archive
+          </div>
+        </router-link>
+      </div>
+      <div class="col-6">
+        <router-link to="/about" class="btn btn-outline-dark d-flex py-2 square-sm w-100">
+          <div class="m-auto">
+            <font-awesome-icon class="fa-lg" icon="circle-info" />
+            About
+          </div>
+        </router-link>
+      </div>
+      <div class="col-6">
+        <router-link to="/shop" class="btn btn-outline-dark d-flex py-2 square-sm w-100">
+          <div class="m-auto">
+            <font-awesome-icon class="fa-lg" icon="shopping-cart" />
+            Shop
           </div>
         </router-link>
       </div>
@@ -80,5 +93,8 @@ li {
 }
 .square {
   min-height: 100px;
+}
+.square-sm {
+  min-height: 60px;
 }
 </style>
