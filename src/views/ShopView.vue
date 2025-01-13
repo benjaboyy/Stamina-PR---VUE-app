@@ -2,7 +2,9 @@
   <div class="about container">
     <PageNav/>
     <h1>The Shop</h1>
-    <p>Points earned can be spend to buy items in the shop</p>
+    <p>Points earned can be spent to buy items in the shop</p>
+    <p>Items can be traded at conventions where DDREXP is hosting, <br>
+      at the Games Guild in Alphen aan den Rijn or at Pixel Arcade in 's Hertogenbosch.</p>
     <div v-for="(item, index) in shopItems" :key="index" class="card mt-2">
       <div class="card-body">
         <div class="row">
@@ -35,11 +37,12 @@ export default {
   data() {
     return {
       shopItems: [
-          // red candy bar 'high chew', blue candybar 'high chew', green candybar 'high chew', stamina socks
-        {icon: '🍬', name: 'Red High Chew', description: 'A red candy bar', amount: 15},
-        {icon: '🍬', name: 'Blue High Chew', description: 'A blue candy bar', amount: 30},
-        {icon: '🍬', name: 'Green High Chew', description: 'A green candy bar', amount: 40},
-        {icon: '🧦', name: 'Stamina Socks', description: 'Socks that give you stamina', amount: 50}
+        {icon: '🍬', name: 'Strawberry High Chew', description: 'must have passed a 14', amount: 25},
+        {icon: '🍬', name: 'Apple High Chew', description: 'must have passed a 15', amount: 25},
+        {icon: '🍬', name: 'Banana High Chew', description: 'must have passed a 16', amount: 25},
+        {icon: '🍬', name: 'Mango High Chew', description: 'must have passed a 17', amount: 25},
+        {icon: '🍬', name: 'Watermelon High Chew', description: 'must have passed a 18', amount: 25},
+        // {icon: '🧦', name: 'Stamina Socks', description: 'Socks that give you stamina', amount: 50}
       ]
     }
   }
