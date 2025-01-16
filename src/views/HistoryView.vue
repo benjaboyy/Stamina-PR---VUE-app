@@ -4,6 +4,15 @@
     <p>Here is a list of all ranking on date</p>
     <div v-for="season in seasons" :key="season">
       <h3>{{ season }}</h3>
+      <div class="card mb-3">
+        <router-link :to="`/ranking/${season}`" class="row g-0">
+          <div class="col-md-12">
+            <div class="card-body">
+              <h5 class="card-title m-0">- Full Year -</h5>
+            </div>
+          </div>
+        </router-link>
+      </div>
       <div v-for="monthIndex in reversedMonthIndexes" :key="monthIndex">
         <div v-if="isNotFutureMonth(season, monthIndex)" class="card mb-3">
           <router-link v-if="isNotFutureMonth(season, monthIndex)" :to="`/monthly/${season}/${monthIndex + 1}`" class="row g-0">

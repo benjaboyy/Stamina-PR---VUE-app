@@ -1,11 +1,10 @@
 <template>
   <div class="about container">
-    <PageNav/>
     <h1>The Shop</h1>
     <p>Points earned can be spent to buy items in the shop</p>
-    <p>Items can be traded at conventions where DDREXP is hosting, <br>
-      at the Games Guild in Alphen aan den Rijn or at Pixel Arcade in 's Hertogenbosch.</p>
-    <div v-for="(item, index) in shopItems" :key="index" class="card mt-2">
+    <div class="alert-success alert">Items can be traded at conventions where DDREXP is hosting, <br>
+      at the Games Guild in Alphen aan den Rijn or at Pixel Arcade in 's Hertogenbosch.</div>
+    <div v-for="item in shopItems" :key="item.name" class="card mt-2">
       <div class="card-body">
         <div class="row">
           <div class="col-3 col-md-2 d-flex">
@@ -41,8 +40,7 @@ export default {
         {icon: '🍬', name: 'Apple High Chew', description: 'must have passed a 15', amount: 25},
         {icon: '🍬', name: 'Banana High Chew', description: 'must have passed a 16', amount: 25},
         {icon: '🍬', name: 'Mango High Chew', description: 'must have passed a 17', amount: 25},
-        {icon: '🍬', name: 'Watermelon High Chew', description: 'must have passed a 18', amount: 25},
-        // {icon: '🧦', name: 'Stamina Socks', description: 'Socks that give you stamina', amount: 50}
+        {icon: '🍬', name: 'Watermelon High Chew', description: 'must have passed a 18', amount: 25}
       ]
     }
   }
@@ -59,12 +57,14 @@ table {
 .iconSquare {
   width: 50px;
   height: 50px;
-  //background-color: #fff;
   border: 1px solid #f5c6cb;
   border-radius: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.dark-gold {
+  color: #ffae31;
 }
 </style>
 

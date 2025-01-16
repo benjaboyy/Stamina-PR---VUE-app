@@ -50,7 +50,7 @@ const routes = [
   {
     path: '/hallOfFame/:year',
     name: 'hallOfFameYear',
-    component: () => import(/* webpackChunkName: "hallOfFame" */ '../views/HallOfFameView.vue')
+    component: () => import(/* webpackChunkName: "hallOfFameYear" */ '../views/HallOfFameView.vue')
   },
   {
     path: '/qrtester',
@@ -60,12 +60,12 @@ const routes = [
   {
     path: '/points',
     name: 'points',
-    component: () => import(/* webpackChunkName: "qrTester" */ '../views/EditPoints.vue')
+    component: () => import(/* webpackChunkName: "points" */ '../views/EditPoints.vue')
   },
   {
     path: '/points/:year',
     name: 'pointsYear',
-    component: () => import(/* webpackChunkName: "qrTester" */ '../views/EditPoints.vue')
+    component: () => import(/* webpackChunkName: "pointsYear" */ '../views/EditPoints.vue')
     },
   {
     path: '/shop',
@@ -75,12 +75,12 @@ const routes = [
   {
     path: '/hallOfFameKiosk',
     name: 'hallOfFameKiosk',
-    component: () => import(/* webpackChunkName: "shop" */ '../kioskViews/HallOfFameKiosk.vue')
+    component: () => import(/* webpackChunkName: "hallOfFameKiosk" */ '../kioskViews/HallOfFameKiosk.vue')
   },
   {
     path: '/rankingKiosk',
     name: 'rankingKiosk',
-    component: () => import(/* webpackChunkName: "ranking" */ '../kioskViews/RankingKiosk.vue')
+    component: () => import(/* webpackChunkName: "rankingKiosk" */ '../kioskViews/RankingKiosk.vue')
   }
 ]
 
