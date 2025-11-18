@@ -15,8 +15,8 @@
           <div class="col-9 col-md-10 text-start d-flex">
             <div class="my-auto">
               <h5 class="card-title m-0">{{ submission.userName }}</h5>
-              <p class="card-text m-0">Song: <strong>{{ submission.songName }}</strong></p>
-              <p class="card-text m-0">BPM: <strong>{{ submission.bpm }}</strong></p>
+              <p class="card-text m-0 dark-gold">Song: <strong>{{ submission.songName }}</strong></p>
+              <p class="card-text m-0 dark-gold">BPM: <strong>{{ submission.bpm }}</strong></p>
             </div>
           </div>
         </div>
@@ -107,6 +107,6 @@ export default {
   background-color: #f9a602;
 }
 .dark-gold {
-  color: #b97b00;
+  color: #f9a602;
 }
 </style>

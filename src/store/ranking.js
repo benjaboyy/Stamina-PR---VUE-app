@@ -102,39 +102,34 @@ export default {
         getRanking(state) {
             return state.seasons;
         },
-        getHighestRankingScores: (state, getters) => (year) => {
-            const currentSeason = getters.currentSeason(year);
+        getHighestRankingScores: (state) => () => {
+            const highestScores = {};
 
-            if (currentSeason && currentSeason.rankings) {
-                const highestScores = {};
-
-                for (const month in currentSeason.rankings) {
-                    const monthData = currentSeason.rankings[month];
-
-                    if (monthData && monthData.submissions) {
-                        const submissions = monthData.submissions;
-
-                        for (const user in submissions) {
-                            const submission = submissions[user];
-                            const currentHighest = highestScores[user];
-
-                            if (!currentHighest || submission.difficulty > currentHighest.difficulty) {
-                                highestScores[user] = {
-                                    difficulty: submission.difficulty,
-                                    songName: submission.songName,
-                                    bpm: submission.bpm,
-                                    date: submission.date
-                                };
+            state.seasons.forEach((season) => {
+                if (season.rankings) {
+                    for (const month in season.rankings) {
+                        const monthData = season.rankings[month];
+                        if (monthData && monthData.submissions) {
+                            const submissions = monthData.submissions;
+                            for (const user in submissions) {
+                                const submission = submissions[user];
+                                const currentHighest = highestScores[user];
+                                if (!currentHighest || Number(submission.difficulty) > Number(currentHighest.difficulty)) {
+                                    highestScores[user] = {
+                                        difficulty: submission.difficulty,
+                                        songName: submission.songName,
+                                        bpm: submission.bpm,
+                                        date: submission.date,
+                                        year: season.year,
+                                        month: month
+                                    };
+                                }
                             }
                         }
                     }
                 }
-
-                return highestScores;
-            } else {
-                console.error("Current season or rankings not available:", currentSeason);
-                return {};
-            }
+            });
+            return highestScores;
         }
     }
 }
