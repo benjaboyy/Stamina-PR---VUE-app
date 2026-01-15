@@ -19,6 +19,11 @@
           2025 punten
         </router-link>
       </li>
+      <li>
+        <router-link to="/points/2026" class="dropdown-item">
+          2026 punten
+        </router-link>
+      </li>
     </ul>
   </div>
 </template>

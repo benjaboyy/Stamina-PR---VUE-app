@@ -32,7 +32,7 @@ export default {
     return {
       submissions: [],
       sortedSubmissions: [],
-      year: [ this.$route.params.year ] || ["2024", "2025"]
+      year: [ this.$route.params.year ] || ["2024", "2025", "2026"]
     };
   },
   created() {

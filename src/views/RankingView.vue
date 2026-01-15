@@ -35,8 +35,8 @@ export default {
     return {
       submissions: [],
       sortedSubmissions: [],
-      // get year from url or set "2025"
-      year: this.$route.params.year || "2025"
+      // get year from url or set "2026"
+      year: this.$route.params.year || "2026"
     };
   },
   created() {

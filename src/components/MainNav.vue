@@ -37,19 +37,11 @@
           </div>
         </router-link>
       </div>
-      <div class="col-6">
+      <div class="col-6 mx-auto">
         <router-link to="/about" class="btn btn-outline-dark d-flex py-2 square-sm w-100">
           <div class="m-auto">
             <font-awesome-icon class="fa-lg" icon="circle-info" />
             About
-          </div>
-        </router-link>
-      </div>
-      <div class="col-6">
-        <router-link to="/shop" class="btn btn-outline-dark d-flex py-2 square-sm w-100">
-          <div class="m-auto">
-            <font-awesome-icon class="fa-lg" icon="shopping-cart" />
-            Shop
           </div>
         </router-link>
       </div>

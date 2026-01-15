@@ -33,7 +33,7 @@ export default {
     return {
       submissions: [],
       sortedSubmissions: [],
-      year: this.$route.params.year || "2025",
+      year: this.$route.params.year || "2026",
       playerPoints: []
     };
   },
