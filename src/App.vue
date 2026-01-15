@@ -1,6 +1,8 @@
 <template>
   <PageNav/>
-  <router-view v-if="loaded"/>
+  <transition name="fly-fade" mode="out-in" appear>
+    <router-view v-if="loaded" :key="$route.fullPath"/>
+  </transition>
 </template>
 
 <script>
@@ -39,5 +41,25 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+}
+
+.fly-fade-enter-active,
+.fly-fade-leave-active,
+.fly-fade-appear-active {
+  transition: opacity 250ms ease, transform 250ms ease;
+}
+
+.fly-fade-enter-from,
+.fly-fade-leave-to,
+.fly-fade-appear-from {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.fly-fade-enter-to,
+.fly-fade-leave-from,
+.fly-fade-appear-to {
+  opacity: 1;
+  transform: translateY(0);
 }
 </style>
