@@ -28,6 +28,11 @@ const routes = [
     component: () => import(/* webpackChunkName: "ranking" */ '../views/RankingView.vue')
   },
   {
+    path: '/dutch-srpg-ranking',
+    name: 'dutchSrpgRanking',
+    component: () => import(/* webpackChunkName: "dutchSrpgRanking" */ '../views/DutchSrpgRanking.vue')
+  },
+  {
     path: '/ranking/:year',
     name: 'rankingYear',
     component: () => import(/* webpackChunkName: "ranking" */ '../views/RankingView.vue')

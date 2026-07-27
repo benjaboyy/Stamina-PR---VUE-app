@@ -37,6 +37,14 @@
           </div>
         </router-link>
       </div>
+      <div class="col-12">
+        <router-link to="/dutch-srpg-ranking" class="btn btn-dark d-flex py-2 square-sm w-100">
+          <div class="m-auto">
+            <font-awesome-icon class="fa-lg" icon="dragon" />
+            Dutch SRPG ranking
+          </div>
+        </router-link>
+      </div>
       <div class="col-6 mx-auto">
         <router-link to="/about" class="btn btn-outline-dark d-flex py-2 square-sm w-100">
           <div class="m-auto">

@@ -21,6 +21,14 @@
               </router-link>
             </div>
             <div class="col-12">
+              <router-link @click="toggleShowMore" to="/dutch-srpg-ranking" class="btn btn-primary d-flex w-100">
+                <div class="m-auto">
+                  <font-awesome-icon class="fa-lg" icon="ranking-star" />
+                  Dutch SRPG ranking
+                </div>
+              </router-link>
+            </div>
+            <div class="col-12">
               <router-link @click="toggleShowMore" to="/hallOfFame" class="btn btn-primary d-flex w-100">
                 <div class="m-auto">
                   <font-awesome-icon class="fa-lg" icon="trophy" />

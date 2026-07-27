@@ -25,13 +25,15 @@ import { faHouse } from "@fortawesome/free-solid-svg-icons";
 import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
 import { faCalendar } from "@fortawesome/free-regular-svg-icons";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
+import { faDragon } from "@fortawesome/free-solid-svg-icons";
 // import chevons icons
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 
 
 /* add icons to the library */
-library.add(faQrcode, faStar, faRankingStar, faTrophy, faInfoCircle, faTimeline, faPaperPlane, faHeart, faHouse, faEllipsis, faChevronLeft, faChevronRight, faCalendar, faShoppingCart)
+library.add(faQrcode, faStar, faRankingStar, faTrophy, faInfoCircle, faTimeline, faPaperPlane, faHeart, faHouse, faEllipsis, faChevronLeft, faChevronRight, faCalendar, faShoppingCart, faArrowUpRightFromSquare, faDragon)
 
 createApp(App)
     .component('font-awesome-icon', FontAwesomeIcon)
